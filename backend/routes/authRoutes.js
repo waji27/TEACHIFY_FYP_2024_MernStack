@@ -14,4 +14,7 @@ router.post("/register", registerController);
 //LOGIN || POST
 router.post("/login", loginController);
 
+//Forgot Password || POST
+// router.post("/reset-password", resetPasswordController);
+
 export default router;

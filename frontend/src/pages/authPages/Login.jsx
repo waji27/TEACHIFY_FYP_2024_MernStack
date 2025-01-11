@@ -9,6 +9,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  const handleForgetpassword = () => {
+    toast.error("Feature will be added soon");
+  };
   //   function for login user
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -107,7 +110,7 @@ const Login = () => {
                     </div>
                   </div> */}
                   <Link
-                    href="#"
+                    onClick={handleForgetpassword}
                     className="text-sm font-medium text-blue-600 hover:underline dark:text-primary-500"
                   >
                     Forgot password?

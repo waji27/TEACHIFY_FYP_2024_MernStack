@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/auth.jsx";
 import toast from "react-hot-toast";
@@ -6,6 +6,12 @@ import logo from "../assets/headlogo.png";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
+  const [Menuopen, setMenuopen] = useState(false);
+
+  //phone navigation open/close function
+  const handleMenuopen = () => {
+    setMenuopen(!Menuopen);
+  };
 
   //logout function
   const handleLogout = () => {
@@ -67,6 +73,7 @@ const Header = () => {
                 Signup
               </Link>
               <button
+                onClick={handleMenuopen}
                 data-collapse-toggle="mobile-menu-2"
                 type="button"
                 className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -101,8 +108,10 @@ const Header = () => {
               </button>
             </div>
             <div
-              className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
-              id="mobile-menu-2"
+              className={`${
+                Menuopen ? "" : "hidden"
+              } justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
+              id="mobile-menu-2`}
             >
               <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                 <li>

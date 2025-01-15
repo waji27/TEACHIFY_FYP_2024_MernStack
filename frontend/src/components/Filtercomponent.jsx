@@ -4,14 +4,14 @@ const Filtercomponent = () => {
   const [filterDropdownVisible, setFilterDropdownVisible] = useState(false);
   const [actionsDropdownVisible, setActionsDropdownVisible] = useState(false);
 
-  const toggleFilterDropdown = () =>
-    setFilterDropdownVisible(!filterDropdownVisible);
   const toggleActionsDropdown = () =>
     setActionsDropdownVisible(!actionsDropdownVisible);
+  const toggleFilterDropdown = () =>
+    setFilterDropdownVisible(!filterDropdownVisible);
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 h-screen flex items-center">
-      <div className="max-w-screen-xl px-4 mx-auto lg:px-12 w-full">
+    <section className="bg-gray-50 dark:bg-gray-900 flex items-center flex-col">
+      <div className="max-w-screen-xl px-4 mx-auto lg:px-12 w-full pt-3">
         {/* Start coding here */}
         <div className="relative bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
           <div className="flex flex-col items-center justify-between p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
@@ -47,25 +47,6 @@ const Filtercomponent = () => {
               </form>
             </div>
             <div className="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 md:w-auto md:flex-row md:space-y-0 md:items-center md:space-x-3">
-              <button
-                type="button"
-                className="flex items-center justify-center px-4 py-2 text-sm font-medium text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
-              >
-                <svg
-                  className="h-3.5 w-3.5 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                >
-                  <path
-                    clipRule="evenodd"
-                    fillRule="evenodd"
-                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                  />
-                </svg>
-                Add product
-              </button>
               <div className="flex items-center w-full space-x-3 md:w-auto">
                 <button
                   aria-expanded={actionsDropdownVisible}
@@ -91,39 +72,6 @@ const Filtercomponent = () => {
                   </svg>
                   Actions
                 </button>
-                <div
-                  id="actionsDropdown"
-                  className={`z-10 ${
-                    actionsDropdownVisible ? "absolute" : "hidden"
-                  } bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600`}
-                  style={{
-                    position: "absolute",
-                    inset: "0px auto auto 0px; margin: 0px",
-                    transform: "translate3d(901px, 64px, 0px)",
-                  }}
-                >
-                  <ul
-                    className="py-1 text-sm text-gray-700 dark:text-gray-200"
-                    aria-labelledby="actionsDropdownButton"
-                  >
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                      >
-                        Mass Edit
-                      </a>
-                    </li>
-                  </ul>
-                  <div className="py-1">
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                    >
-                      Delete all
-                    </a>
-                  </div>
-                </div>
                 <button
                   aria-expanded={filterDropdownVisible}
                   aria-controls="filterDropdown"
@@ -161,88 +109,121 @@ const Filtercomponent = () => {
                     />
                   </svg>
                 </button>
-                {/* Dropdown menu */}
-                <div
-                  id="filterDropdown"
-                  className={`z-10 ${
-                    filterDropdownVisible ? "absolute" : "hidden"
-                  } w-48 p-3 bg-white rounded-lg shadow dark:bg-gray-700`}
-                  style={{
-                    position: "absolute",
-                    inset: "0px auto auto 0px",
-                    margin: "0px",
-                    transform: "translate3d(1015px, 64px, 0px)",
-                  }}
-                >
-                  <h6 className="mb-3 text-sm font-medium text-gray-900 dark:text-white">
-                    Subjects
-                  </h6>
-                  <ul
-                    className="space-y-2 text-sm"
-                    aria-labelledby="dropdownDefault"
-                  >
-                    <li className="flex items-center">
-                      <input
-                        id="apple"
-                        type="checkbox"
-                        defaultValue
-                        className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                      />
-                      <label
-                        htmlFor="apple"
-                        className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                      >
-                        English
-                      </label>
-                    </li>
-                    <li className="flex items-center">
-                      <input
-                        id="fitbit"
-                        type="checkbox"
-                        defaultValue
-                        className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                      />
-                      <label
-                        htmlFor="fitbit"
-                        className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                      >
-                        Urdu
-                      </label>
-                    </li>
-                    <li className="flex items-center">
-                      <input
-                        id="dell"
-                        type="checkbox"
-                        defaultValue
-                        className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                      />
-                      <label
-                        htmlFor="dell"
-                        className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                      >
-                        Maths
-                      </label>
-                    </li>
-                    <li className="flex items-center">
-                      <input
-                        id="asus"
-                        type="checkbox"
-                        defaultValue
-                        defaultChecked
-                        className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                      />
-                      <label
-                        htmlFor="asus"
-                        className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                      >
-                        Geography
-                      </label>
-                    </li>
-                  </ul>
-                </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="max-w-screen-xl px-4 mx-auto lg:px-12 w-full">
+        {/* Dropdown menu for actions */}
+        <div
+          id="actionsDropdown"
+          className={`z-10 ${
+            actionsDropdownVisible ? "block" : "hidden"
+          } w-40 bg-white rounded-lg shadow dark:bg-gray-700 ml-auto mr-auto`}
+          //   style={{
+          //     position: "absolute",
+          //     inset: "0px auto auto 0px; margin: 0px",
+          //     transform: "translate3d(901px, 64px, 0px)",
+          //   }}
+        >
+          <ul
+            className="py-1 text-sm text-gray-700 dark:text-gray-200"
+            aria-labelledby="actionsDropdownButton"
+          >
+            <li>
+              <a
+                href="#"
+                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                Online
+              </a>
+            </li>
+          </ul>
+          <div className="py-1">
+            <a
+              href="#"
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+            >
+              Offline
+            </a>
+          </div>
+        </div>
+        {/* Dropdown menu for filters */}
+        <div
+          id="filterDropdown"
+          className={`z-10 ${
+            filterDropdownVisible ? "block" : "hidden"
+          } w-48 p-3 bg-white rounded-lg shadow dark:bg-gray-700 ml-auto`}
+          //   style={{
+          //     position: "absolute",
+          //     inset: "0px auto auto 0px",
+          //     margin: "0px",
+          //     transform: "translate3d(1015px, 64px, 0px)",
+          //   }}
+        >
+          <h6 className="mb-3 text-sm font-medium text-gray-900 dark:text-white">
+            Subjects
+          </h6>
+          <ul className="space-y-2 text-sm" aria-labelledby="dropdownDefault">
+            <li className="flex items-center">
+              <input
+                id="apple"
+                type="checkbox"
+                defaultValue
+                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+              />
+              <label
+                htmlFor="apple"
+                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+              >
+                English
+              </label>
+            </li>
+            <li className="flex items-center">
+              <input
+                id="fitbit"
+                type="checkbox"
+                defaultValue
+                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+              />
+              <label
+                htmlFor="fitbit"
+                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+              >
+                Urdu
+              </label>
+            </li>
+            <li className="flex items-center">
+              <input
+                id="dell"
+                type="checkbox"
+                defaultValue
+                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+              />
+              <label
+                htmlFor="dell"
+                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+              >
+                Maths
+              </label>
+            </li>
+            <li className="flex items-center">
+              <input
+                id="asus"
+                type="checkbox"
+                defaultValue
+                defaultChecked
+                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+              />
+              <label
+                htmlFor="asus"
+                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+              >
+                Geography
+              </label>
+            </li>
+          </ul>
         </div>
       </div>
     </section>

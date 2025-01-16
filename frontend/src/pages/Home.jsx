@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
 import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Home = () => {
+  const toastComingSoon = () => {
+    toast.success("Feature coming soon");
+  };
+
   return (
     <Layout>
       <section className="bg-white dark:bg-gray-900">
@@ -10,14 +16,14 @@ const Home = () => {
           <div className="mr-auto place-self-center lg:col-span-7">
             <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
               Platform for connecting Teachers and Students
-              {" Teachify"}
             </h1>
             <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
               From checkout to global sales tax compliance, companies around the
               world use Flowbite to simplify their payment stack.
             </p>
-            <a
-              href="#"
+            <button
+              onClick={toastComingSoon}
+              to="/"
               className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
             >
               Get started
@@ -33,13 +39,14 @@ const Home = () => {
                   clipRule="evenodd"
                 />
               </svg>
-            </a>
-            <a
-              href="#"
+            </button>
+            <button
+              onClick={toastComingSoon}
+              to="/"
               className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
             >
               Buy Perks
-            </a>
+            </button>
           </div>
           <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
             <img
@@ -48,6 +55,33 @@ const Home = () => {
               alt="logo"
             />
           </div>
+        </div>
+      </section>
+
+      <section className="bg-white dark:bg-gray-900">
+        <div className="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6">
+          <dl className="grid max-w-screen-md gap-8 mx-auto text-gray-900 sm:grid-cols-3 dark:text-white">
+            <div className="flex flex-col items-center justify-center">
+              <dt className="mb-2 text-3xl md:text-4xl font-extrabold">73k+</dt>
+              <dd className="font-light text-gray-500 dark:text-gray-400">
+                Students
+              </dd>
+            </div>
+            <div className="flex flex-col items-center justify-center">
+              <dt className="mb-2 text-3xl md:text-4xl font-extrabold">19k+</dt>
+              <dd className="font-light text-gray-500 dark:text-gray-400">
+                Teachers
+              </dd>
+            </div>
+            <div className="flex flex-col items-center justify-center">
+              <dt className="mb-2 text-3xl md:text-4xl font-extrabold">
+                120k+
+              </dt>
+              <dd className="font-light text-gray-500 dark:text-gray-400">
+                users
+              </dd>
+            </div>
+          </dl>
         </div>
       </section>
     </Layout>

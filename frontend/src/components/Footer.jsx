@@ -198,13 +198,9 @@ const Footer = () => {
               </button>
             </li>
             <li>
-              <button
-                onClick={toastComingSoon}
-                to="/"
-                className="mr-4 hover:underline md:mr-6"
-              >
+              <Link to="/faqs" className="mr-4 hover:underline md:mr-6">
                 FAQs
-              </button>
+              </Link>
             </li>
             <li>
               <button

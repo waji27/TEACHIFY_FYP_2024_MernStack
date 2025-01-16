@@ -6,6 +6,8 @@ import Resetpassword from "./pages/authPages/Resetpassword";
 import Pagenotfound from "./pages/Pagenotfound";
 import Allteachers from "./pages/teacherpages/Allteachers";
 import Allstudents from "./pages/studentpages/Allstudents";
+import AffiliateProg from "./pages/AffiliateProg";
+import Faqs from "./pages/Faqs";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="*" element={<Pagenotfound />} />
         <Route path="/all-teachers" element={<Allteachers />} />
         <Route path="/all-students" element={<Allstudents />} />
+        <Route path="/affiliate-program" element={<AffiliateProg />} />
+        <Route path="/faqs" element={<Faqs />} />
       </Routes>
     </>
   );

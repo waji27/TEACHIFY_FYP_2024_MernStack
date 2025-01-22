@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "../components/Layout";
+import { Link } from "react-router-dom";
 
 const AffiliateProg = () => {
   return (
@@ -137,7 +138,8 @@ const AffiliateProg = () => {
             </div>
           </div>
           <div className="flex relative py-10 sm:items-center md:w-2/3 mx-auto flex-wrap justify-center items-center gap-3">
-            <button
+            <Link
+              to="/add-new-teacher"
               type="button"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
@@ -157,8 +159,9 @@ const AffiliateProg = () => {
                   d="M1 5h12m0 0L9 1m4 4L9 9"
                 />
               </svg>
-            </button>
-            <button
+            </Link>
+            <Link
+              to="/add-new-student"
               type="button"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
@@ -178,7 +181,7 @@ const AffiliateProg = () => {
                   d="M1 5h12m0 0L9 1m4 4L9 9"
                 />
               </svg>
-            </button>
+            </Link>
           </div>
         </div>
       </section>

@@ -2,6 +2,7 @@ import userModel from "../models/userModel.js";
 import { comparePassword, hashPassword } from "./../helpers/authHelper.js";
 import JWT from "jsonwebtoken";
 
+// register controller
 export const registerController = async (req, res) => {
   try {
     const { email, password, confirmPassword, agreement } = req.body;
@@ -57,7 +58,7 @@ export const registerController = async (req, res) => {
   }
 };
 
-//POST LOGIN
+//POST LOGIN controller
 export const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -71,7 +72,7 @@ export const loginController = async (req, res) => {
     //check user
     const user = await userModel.findOne({ email });
     if (!user) {
-      return res.status(404).send({
+      return res.status(200).send({
         success: false,
         message: "Email is not registerd",
       });

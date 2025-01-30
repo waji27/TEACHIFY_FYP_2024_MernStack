@@ -9,6 +9,7 @@ import Allstudents from "./pages/studentpages/Allstudents";
 import AffiliateProg from "./pages/AffiliateProg";
 import Faqs from "./pages/Faqs";
 import AddNewTeacher from "./pages/teacherpages/AddNewTeacher";
+import Email from "./pages/teacherpages/email";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/affiliate-program" element={<AffiliateProg />} />
         <Route path="/add-new-teacher" element={<AddNewTeacher />} />
         <Route path="/faqs" element={<Faqs />} />
+        <Route path="/email" element={<Email />} />
       </Routes>
     </>
   );

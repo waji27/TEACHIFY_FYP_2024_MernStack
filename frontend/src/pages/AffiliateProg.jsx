@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../components/Layout";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AffiliateProg = () => {
+  const navigate = useNavigate();
+
+  const handleCLick = () => {
+    const authData = JSON.parse(localStorage.getItem("auth"));
+    if (
+      authData?.user?.role == "teacher" ||
+      authData?.user?.role == "teacher"
+    ) {
+      toast.error(
+        "You are already a part of Affiliate Program, Check Dashboard"
+      );
+    } else {
+      navigate("/add-new-teacher");
+    }
+  };
+
   return (
     <Layout>
       <section className="text-gray-400 bg-gray-900 body-font">
@@ -138,8 +156,8 @@ const AffiliateProg = () => {
             </div>
           </div>
           <div className="flex relative py-10 sm:items-center md:w-2/3 mx-auto flex-wrap justify-center items-center gap-3">
-            <Link
-              to="/add-new-teacher"
+            <button
+              onClick={handleCLick}
               type="button"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
@@ -159,9 +177,9 @@ const AffiliateProg = () => {
                   d="M1 5h12m0 0L9 1m4 4L9 9"
                 />
               </svg>
-            </Link>
-            <Link
-              to="/add-new-student"
+            </button>
+            <button
+              onClick={handleCLick}
               type="button"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
@@ -181,7 +199,7 @@ const AffiliateProg = () => {
                   d="M1 5h12m0 0L9 1m4 4L9 9"
                 />
               </svg>
-            </Link>
+            </button>
           </div>
         </div>
       </section>

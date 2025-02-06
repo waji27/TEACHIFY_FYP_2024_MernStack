@@ -131,3 +131,29 @@ export const registerController = async (req, res) => {
     console.log(error);
   }
 };
+
+export const getAllTeacherController = async (req, res) => {
+  try {
+    const allTeachers = await userModel.find({ role: "teacher" });
+
+    if (!allTeachers || allTeachers.length === 0) {
+      return res.status(404).send({
+        success: false,
+        message: "No teachers found",
+      });
+    }
+
+    res.status(200).send({
+      success: true,
+      message: "All teachers fetched successfully!",
+      allTeachers,
+    });
+  } catch (error) {
+    console.error("Error fetching teachers:", error);
+    res.status(500).send({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};

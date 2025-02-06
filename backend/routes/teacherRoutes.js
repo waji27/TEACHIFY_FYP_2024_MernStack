@@ -1,5 +1,8 @@
 import express from "express";
-import { registerController } from "../controllers/teacherController.js";
+import {
+  getAllTeacherController,
+  registerController,
+} from "../controllers/teacherController.js";
 
 //router object
 const router = express.Router();
@@ -7,5 +10,8 @@ const router = express.Router();
 //routing
 //REGISTER || METHOD POST
 router.post("/add-new-teacher", registerController);
+
+//GET ALL TEACHERS || METHOD POST
+router.post("/get-all-teachers", getAllTeacherController);
 
 export default router;

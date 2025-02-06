@@ -11,13 +11,27 @@ const AffiliateProg = () => {
     const authData = JSON.parse(localStorage.getItem("auth"));
     if (
       authData?.user?.role == "teacher" ||
-      authData?.user?.role == "teacher"
+      authData?.user?.role == "student"
     ) {
       toast.error(
         "You are already a part of Affiliate Program, Check Dashboard"
       );
     } else {
       navigate("/add-new-teacher");
+    }
+  };
+
+  const handleCLick2 = () => {
+    const authData = JSON.parse(localStorage.getItem("auth"));
+    if (
+      authData?.user?.role == "teacher" ||
+      authData?.user?.role == "student"
+    ) {
+      toast.error(
+        "You are already a part of Affiliate Program, Check Dashboard"
+      );
+    } else {
+      navigate("/add-new-student");
     }
   };
 
@@ -179,7 +193,7 @@ const AffiliateProg = () => {
               </svg>
             </button>
             <button
-              onClick={handleCLick}
+              onClick={handleCLick2}
               type="button"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >

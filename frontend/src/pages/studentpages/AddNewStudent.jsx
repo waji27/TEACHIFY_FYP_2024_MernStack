@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Layout from "../../components/Layout";
-import toast from "react-hot-toast";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
-const AddNewTeacher = () => {
+const AddNewStudent = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
@@ -14,18 +11,6 @@ const AddNewTeacher = () => {
   const [gender, setGender] = useState("");
   const [teachingmode, setTeachingmode] = useState("");
   const [age, setAge] = useState("0");
-  const [experienceyears, setExperienceyears] = useState("0");
-  const [description, setDescription] = useState("");
-  const [address, setAddress] = useState("");
-  const navigate = useNavigate();
-
-  // Fetch email from localStorage on mount
-  useEffect(() => {
-    const authData = JSON.parse(localStorage.getItem("auth"));
-    if (authData && authData.user && authData.user.email) {
-      setEmail(authData.user.email);
-    }
-  }, []);
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -185,33 +170,36 @@ const AddNewTeacher = () => {
             </div>
           </div>
 
-          {/* education  */}
+          {/* current level of education  */}
           <div className="relative z-0 w-full mb-5 group">
-            <input
+            <label
+              htmlFor="countries"
+              className="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-400"
+            >
+              Current level of education
+            </label>
+            <select
               value={education}
               onChange={(e) => {
                 setEducation(e.target.value);
               }}
-              type="text"
-              name="floating_first_name"
-              id="floating_first_name"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              placeholder=""
-              required
-            />
-            <label
-              htmlFor="floating_first_name"
-              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              id="countries"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
-              Education(Ex. BS, Masters, M-fill, Phd etc)
-            </label>
+              <option value="PreSchool">PreSchool</option>
+              <option value="Primary">Primary</option>
+              <option value="Matric(SSC)">Matric(SSC)</option>
+              <option value="Intermediate(HSSC)">Intermediate(HSSC)</option>
+              <option value="Undergraduate">Undergraduate</option>
+              <option value="Graduate">Graduate</option>
+            </select>
           </div>
 
           {/* gender and teaching mode  */}
           <div className="grid md:grid-cols-2 md:gap-6">
             <div className="relative z-0 w-full mb-5 group">
               <label
-                htmlFor="gender"
+                htmlFor="countries"
                 className="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-400"
               >
                 Select your Gender
@@ -221,7 +209,7 @@ const AddNewTeacher = () => {
                 onChange={(e) => {
                   setGender(e.target.value);
                 }}
-                id="gender"
+                id="countries"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
                 <option value="Male">Male</option>
@@ -230,7 +218,7 @@ const AddNewTeacher = () => {
             </div>
             <div className="relative z-0 w-full mb-5 group">
               <label
-                htmlFor="teachingmode"
+                htmlFor="countries"
                 className="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-400"
               >
                 Select your Teaching Mode
@@ -240,7 +228,7 @@ const AddNewTeacher = () => {
                 onChange={(e) => {
                   setTeachingmode(e.target.value);
                 }}
-                id="teachingmode"
+                id="countries"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
                 <option value="Both">Both</option>
@@ -248,28 +236,6 @@ const AddNewTeacher = () => {
                 <option value="Offline only">Offline only</option>
               </select>
             </div>
-          </div>
-
-          {/* address  */}
-          <div className="relative z-0 w-full mb-5 group">
-            <input
-              value={address}
-              onChange={(e) => {
-                setAddress(e.target.value);
-              }}
-              type="text"
-              name="floating_first_name"
-              id="floating_first_name"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              placeholder=""
-              required
-            />
-            <label
-              htmlFor="floating_first_name"
-              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Address(Ex. City, Province, Country)
-            </label>
           </div>
 
           {/* age  */}
@@ -293,47 +259,6 @@ const AddNewTeacher = () => {
             />
           </div>
 
-          {/* experience of years  */}
-          <div className="relative z-0 w-full mb-5 group">
-            <label
-              htmlFor="small-range"
-              className="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-400"
-            >
-              Experience of years ({experienceyears})
-            </label>
-            <input
-              value={experienceyears}
-              onChange={(e) => {
-                setExperienceyears(e.target.value);
-              }}
-              id="small-range"
-              type="range"
-              min={1}
-              max={10}
-              className="w-full h-1 mb-6 bg-gray-200 rounded-lg appearance-none cursor-pointer range-sm dark:bg-gray-700"
-            />
-          </div>
-
-          {/* description  */}
-          <div className="relative z-0 w-full mb-5 group">
-            <label
-              htmlFor="message"
-              className="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-400"
-            >
-              Add description of 2 to 3 lines(which will be your profile text)
-            </label>
-            <textarea
-              value={description}
-              onChange={(e) => {
-                setDescription(e.target.value);
-              }}
-              id="message"
-              rows="4"
-              className="block p-2.5 w-full text-sm text-gray-900 rounded-lg  bg-transparent border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Ex. I am a perfect teacher in Maths..."
-            ></textarea>
-          </div>
-
           <button
             type="submit"
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -346,4 +271,4 @@ const AddNewTeacher = () => {
   );
 };
 
-export default AddNewTeacher;
+export default AddNewStudent;

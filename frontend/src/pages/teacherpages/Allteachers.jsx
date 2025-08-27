@@ -9,9 +9,10 @@ const Allteachers = () => {
 
   // function for fetching all teachers from backend
   const fetchAllTeachers = async () => {
-    const response = await axios.post(
+    const response = await axios.get(
       "http://localhost:3030/api/v1/teacher/get-all-teachers"
     );
+
     if (response?.data?.success) {
       setAllteachers(response?.data?.allTeachers);
     } else {
@@ -36,7 +37,7 @@ const Allteachers = () => {
           <div className="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
             {Allteachers.map((eachTeacher) => (
               <div
-                key={eachTeacher.key}
+                key={eachTeacher._id}
                 className="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
               >
                 <a href="#">
@@ -48,7 +49,10 @@ const Allteachers = () => {
                 </a>
                 <div className="p-5  w-3/4">
                   <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    <h1 href="#">{eachTeacher.name}</h1>
+                    <h1 href="#">
+                      {eachTeacher.name}
+                      {eachTeacher.lastname}
+                    </h1>
                   </h3>
                   <span className="text-gray-500 dark:text-gray-200">
                     Subjects:{" "}

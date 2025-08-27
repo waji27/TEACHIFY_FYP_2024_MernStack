@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const AddNewStudent = () => {
   const [email, setEmail] = useState("");
@@ -9,15 +12,23 @@ const AddNewStudent = () => {
   const [subjects, setSubjects] = useState("");
   const [education, setEducation] = useState("");
   const [gender, setGender] = useState("");
-  const [teachingmode, setTeachingmode] = useState("");
   const [age, setAge] = useState("0");
+  const navigate = useNavigate();
+
+  // Fetch email from localStorage on mount
+  useEffect(() => {
+    const authData = JSON.parse(localStorage.getItem("auth"));
+    if (authData && authData.user && authData.user.email) {
+      setEmail(authData.user.email);
+    }
+  }, []);
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3030/api/v1/teacher/add-new-teacher",
+        "http://localhost:3030/api/v1/student/add-new-student",
         {
           email,
           name,
@@ -26,11 +37,7 @@ const AddNewStudent = () => {
           subjects,
           education,
           gender,
-          teachingmode,
           age,
-          experienceyears,
-          description,
-          address,
         }
       );
 
@@ -71,7 +78,6 @@ const AddNewStudent = () => {
               Email address
             </label>
           </div>
-
           {/* first name and last name  */}
           <div className="grid md:grid-cols-2 md:gap-6">
             <div className="relative z-0 w-full mb-5 group">
@@ -115,7 +121,6 @@ const AddNewStudent = () => {
               </label>
             </div>
           </div>
-
           {/* phone number and subjects  */}
           <div className="grid md:grid-cols-2 md:gap-6">
             <div className="relative z-0 w-full mb-5 group">
@@ -165,11 +170,10 @@ const AddNewStudent = () => {
                 htmlFor="floating_company"
                 className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                Subjects (Ex. Maths, Science)
+                Favourite Subjects (Ex. Maths, Science)
               </label>
             </div>
           </div>
-
           {/* current level of education  */}
           <div className="relative z-0 w-full mb-5 group">
             <label
@@ -194,7 +198,6 @@ const AddNewStudent = () => {
               <option value="Graduate">Graduate</option>
             </select>
           </div>
-
           {/* gender and teaching mode  */}
           <div className="grid md:grid-cols-2 md:gap-6">
             <div className="relative z-0 w-full mb-5 group">
@@ -216,29 +219,8 @@ const AddNewStudent = () => {
                 <option value="Female">Female</option>
               </select>
             </div>
-            <div className="relative z-0 w-full mb-5 group">
-              <label
-                htmlFor="countries"
-                className="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-400"
-              >
-                Select your Teaching Mode
-              </label>
-              <select
-                value={teachingmode}
-                onChange={(e) => {
-                  setTeachingmode(e.target.value);
-                }}
-                id="countries"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              >
-                <option value="Both">Both</option>
-                <option value="Online only">Online only</option>
-                <option value="Offline only">Offline only</option>
-              </select>
-            </div>
           </div>
-
-          {/* age  */}
+          ß{/* age  */}
           <div className="relative z-0 w-full mb-5 group">
             <label
               htmlFor="small-range"
@@ -258,7 +240,6 @@ const AddNewStudent = () => {
               className="w-full h-1 mb-6 bg-gray-200 rounded-lg appearance-none cursor-pointer range-sm dark:bg-gray-700"
             />
           </div>
-
           <button
             type="submit"
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

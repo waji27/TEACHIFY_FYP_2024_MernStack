@@ -12,6 +12,5 @@ const router = express.Router();
 router.post("/add-new-teacher", registerController);
 
 //GET ALL TEACHERS || METHOD POST
-router.post("/get-all-teachers", getAllTeacherController);
-
+router.get("/get-all-teachers", getAllTeacherController);
 export default router;

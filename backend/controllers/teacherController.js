@@ -132,10 +132,10 @@ export const registerController = async (req, res) => {
   }
 };
 
+// controller for sending all teachers to client
 export const getAllTeacherController = async (req, res) => {
   try {
     const allTeachers = await userModel.find({ role: "teacher" });
-
     if (!allTeachers || allTeachers.length === 0) {
       return res.status(404).send({
         success: false,

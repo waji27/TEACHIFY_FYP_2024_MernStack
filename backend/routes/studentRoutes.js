@@ -1,7 +1,7 @@
 import express from "express";
 import {
   getAllStudentsController,
-  //   registerController,
+  registerController,
 } from "../controllers/studentController.js";
 
 //router object
@@ -9,7 +9,7 @@ const router = express.Router();
 
 //routing
 //REGISTER || METHOD POST
-// router.post("/add-new-teacher", registerController);
+router.post("/add-new-student", registerController);
 
 //GET ALL TEACHERS || METHOD POST
 router.post("/get-all-students", getAllStudentsController);

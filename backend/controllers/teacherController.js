@@ -157,3 +157,21 @@ export const getAllTeacherController = async (req, res) => {
     });
   }
 };
+
+// Controller for fetching all teachers count
+export const AllTeachersCount = async (req, res) => {
+  try {
+    const teachersCount = await userModel.countDocuments({ role: "teacher" });
+    res.status(200).send({
+      success: true,
+      teachersCount,
+    });
+  } catch (error) {
+    console.error("Error in fetching teachersCount:", error);
+    res.status(500).send({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};

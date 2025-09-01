@@ -151,3 +151,21 @@ export const loginController = async (req, res) => {
 //     });
 //   }
 // };
+
+// Controller for fetching all users count
+export const AllUsersCount = async (req, res) => {
+  try {
+    const UsersCount = await userModel.countDocuments();
+    res.status(200).send({
+      success: true,
+      UsersCount,
+    });
+  } catch (error) {
+    console.error("Error in fetching teachersCount:", error);
+    res.status(500).send({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};

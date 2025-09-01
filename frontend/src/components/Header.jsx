@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/auth.jsx";
 import toast from "react-hot-toast";
-import logo from "../assets/headlogo.png";
+import logo from "../assets/file.svg";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -63,6 +63,16 @@ const Header = () => {
                 </>
               ) : (
                 <>
+                  <Link
+                    to={
+                      auth?.user?.role === "teacher"
+                        ? "/teacher-dashboard"
+                        : "/student-dashboard"
+                    }
+                    className="text-gray-800 bg-blue-400 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                  >
+                    Dashboard
+                  </Link>
                   <Link
                     onClick={handleLogout}
                     to="/login"
@@ -133,10 +143,10 @@ const Header = () => {
                 </li>
                 <li>
                   <Link
-                    to="/all-students"
+                    to="/pricing"
                     className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                   >
-                    Students
+                    Pricing
                   </Link>
                 </li>
               </ul>

@@ -9,6 +9,10 @@ const AffiliateProg = () => {
 
   const handleCLick = () => {
     const authData = JSON.parse(localStorage.getItem("auth"));
+    if (!authData) {
+      toast.error("You have'nt logged in!");
+      return; // stop execution here
+    }
     if (
       authData?.user?.role == "teacher" ||
       authData?.user?.role == "student"
@@ -16,6 +20,7 @@ const AffiliateProg = () => {
       toast.error(
         "You are already a part of Affiliate Program, Check Dashboard"
       );
+      return;
     } else {
       navigate("/add-new-teacher");
     }
@@ -23,6 +28,10 @@ const AffiliateProg = () => {
 
   const handleCLick2 = () => {
     const authData = JSON.parse(localStorage.getItem("auth"));
+    if (!authData) {
+      toast.error("You have'nt logged in!");
+      return;
+    }
     if (
       authData?.user?.role == "teacher" ||
       authData?.user?.role == "student"
@@ -30,6 +39,7 @@ const AffiliateProg = () => {
       toast.error(
         "You are already a part of Affiliate Program, Check Dashboard"
       );
+      return;
     } else {
       navigate("/add-new-student");
     }
@@ -328,14 +338,12 @@ const AffiliateProg = () => {
             </p>
             <button
               onClick={handleCLick2}
-              to="/register-student"
               className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 my-3 w-full"
             >
               Go for a Student!
             </button>
             <button
               onClick={handleCLick}
-              to="/register-teacher"
               className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 my-3 w-full"
             >
               Go for a Teacher!

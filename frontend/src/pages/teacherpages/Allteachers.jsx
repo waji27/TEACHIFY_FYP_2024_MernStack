@@ -50,8 +50,7 @@ const Allteachers = () => {
                 <div className="p-5  w-3/4">
                   <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                     <h1 href="#">
-                      {eachTeacher.name}
-                      {eachTeacher.lastname}
+                      {eachTeacher.name} {eachTeacher.lastname}
                     </h1>
                   </h3>
                   <span className="text-gray-500 dark:text-gray-200">

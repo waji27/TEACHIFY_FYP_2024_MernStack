@@ -11,6 +11,11 @@ import Faqs from "./pages/Faqs";
 import AddNewTeacher from "./pages/teacherpages/AddNewTeacher";
 import Email from "./pages/teacherpages/email";
 import AddNewStudent from "./pages/studentpages/AddNewStudent";
+import Pricing from "./pages/Pricing";
+import TeacherDashboard from "./pages/teacherpages/TeacherDashboard";
+import StudentDashboard from "./pages/studentpages/StudentDashboard";
+import StudentProfEdit from "./pages/studentpages/StudentProfEdit";
+import TeacherProfEdit from "./pages/teacherpages/TeacherProfEdit";
 
 function App() {
   return (
@@ -25,9 +30,15 @@ function App() {
         <Route path="/all-students" element={<Allstudents />} />
         <Route path="/affiliate-program" element={<AffiliateProg />} />
         <Route path="/add-new-teacher" element={<AddNewTeacher />} />
+        <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
+        <Route path="/teacher-edit-profile" element={<TeacherProfEdit />} />
         <Route path="/add-new-student" element={<AddNewStudent />} />
+        <Route path="/student-dashboard" element={<StudentDashboard />} />
+        <Route path="/student-edit-profile" element={<StudentProfEdit />} />
+        <Route path="/student" element={<AddNewStudent />} />
         <Route path="/faqs" element={<Faqs />} />
         <Route path="/email" element={<Email />} />
+        <Route path="/pricing" element={<Pricing />} />
       </Routes>
     </>
   );

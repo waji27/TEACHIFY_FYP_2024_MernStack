@@ -19,8 +19,7 @@ const Footer = () => {
             Teachify
           </Link>
           <p className="my-6 text-gray-500 dark:text-gray-400">
-            Open-source library of over 400+ web components and interactive
-            elements built for better web.
+            Platform for connecting Teachers and Students
           </p>
           <ul className="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
             <li>

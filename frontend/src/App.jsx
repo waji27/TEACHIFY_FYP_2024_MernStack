@@ -16,6 +16,8 @@ import TeacherDashboard from "./pages/teacherpages/TeacherDashboard";
 import StudentDashboard from "./pages/studentpages/StudentDashboard";
 import StudentProfEdit from "./pages/studentpages/StudentProfEdit";
 import TeacherProfEdit from "./pages/teacherpages/TeacherProfEdit";
+import Posts from "./pages/Posts";
+import Payment from "./pages/Payment";
 
 function App() {
   return (
@@ -39,6 +41,8 @@ function App() {
         <Route path="/faqs" element={<Faqs />} />
         <Route path="/email" element={<Email />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/posts" element={<Posts />} />
+        <Route path="/payment" element={<Payment />} />
       </Routes>
     </>
   );

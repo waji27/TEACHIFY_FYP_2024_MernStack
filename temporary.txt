@@ -1,0 +1,209 @@
+import React, { useState } from "react";
+import Layout from "../../components/Layout";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useAuth } from "../../context/auth";
+
+const TeacherProfEdit = () => {
+  //context
+  const [auth, setAuth] = useAuth();
+
+  // user data
+  const [name, setName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState("");
+  const [age, setAge] = useState(0);
+  const [phoneno, setPhoneNo] = useState("");
+  const [gender, setGender] = useState("");
+  const [education, setEducation] = useState("");
+  const [teachingmode, setTeachingMode] = useState("");
+  const [experienceyears, setExperienceYears] = useState("");
+  const [subjects, setSubjects] = useState("");
+  const [password, setPassword] = useState("");
+  const [description, setDescription] = useState("");
+
+  //get user data
+  useEffect(() => {
+    const {
+      name,
+      lastname,
+      email,
+      role,
+      age,
+      phoneno,
+      gender,
+      education,
+      teachingmode,
+      experienceyears,
+      password,
+      subjects,
+      description,
+    } = auth?.user;
+    setName(name);
+    setName(lastname);
+    setName(email);
+    setName(role);
+    setName(age);
+    setName(phoneno);
+    setName(gender);
+    setName(education);
+    setName(teachingmode);
+    setName(experienceyears);
+    setName(subjects);
+    setName(password);
+    setName(description);
+  }, [auth?.user]);
+
+  // const [formData, setFormData] = useState({
+  //   name: "",
+  //   lastname: "",
+  //   email: "",
+  //   role: "teacher",
+  //   age: "",
+  //   phoneno: "",
+  //   gender: "",
+  //   education: "",
+  //   teachingmode: "",
+  //   experienceyears: "",
+  //   subjects: "",
+  //   password: "",
+  //   description: "",
+  // });
+
+  // handle input change
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // submit handler
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.put(
+        "http://localhost:8080/api/v1/teacher/update-profile", // ✅ adjust API route
+        formData
+      );
+      if (data?.success) {
+        toast.success("Profile updated successfully!");
+      } else {
+        toast.error(data?.message || "Update failed");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong while updating profile");
+    }
+  };
+
+  return (
+    <Layout>
+      <section className="bg-gray-50 dark:bg-gray-900 flex items-start py-3">
+        <div className="max-w-screen-xl px-4 mx-auto lg:px-12 w-full">
+          <div className="relative bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
+            <div className="flex flex-col items-center justify-center p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
+              <Link
+                to="/teacher-dashboard"
+                className="px-4 py-2 text-sm font-medium text-white rounded-lg bg-primary-700 hover:bg-primary-800"
+              >
+                Profile
+              </Link>
+              <Link
+                to="/teacher-edit-profile"
+                className="px-4 py-2 text-sm font-medium text-white rounded-lg bg-primary-700 hover:bg-primary-800"
+              >
+                Edit Profile
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Update Profile Form */}
+      <section>
+        <div className="px-12 pb-8">
+          <div className="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              Update Profile
+            </h3>
+            <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2">
+              {[
+                { label: "First Name", name: "name", type: "text" },
+                { label: "Last Name", name: "lastname", type: "text" },
+                { label: "Email", name: "email", type: "email" },
+                { label: "Role", name: "role", type: "text" },
+                { label: "Age", name: "age", type: "number" },
+                { label: "Phone No", name: "phoneno", type: "text" },
+                { label: "Gender", name: "gender", type: "text" },
+                { label: "Education", name: "education", type: "text" },
+                { label: "Teaching Mode", name: "teachingmode", type: "text" },
+                {
+                  label: "Experience Years",
+                  name: "experienceyears",
+                  type: "number",
+                },
+                { label: "Subjects", name: "subjects", type: "text" },
+                { label: "Password", name: "password", type: "password" },
+              ].map((field, idx) => (
+                <div key={idx}>
+                  <label
+                    htmlFor={field.name}
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    {field.label}
+                  </label>
+                  <input
+                    type={field.type}
+                    id={field.name}
+                    name={field.name}
+                    value={formData[field.name]}
+                    onChange={handleChange}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  />
+                </div>
+              ))}
+
+              {/* Description */}
+              <div className="sm:col-span-2">
+                <label
+                  htmlFor="description"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Description
+                </label>
+                <textarea
+                  id="description"
+                  name="description"
+                  rows={4}
+                  value={formData.description}
+                  onChange={handleChange}
+                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  placeholder="Write about yourself..."
+                />
+              </div>
+
+              {/* Buttons */}
+              <div className="sm:col-span-2 flex items-center space-x-4">
+                <button
+                  type="submit"
+                  className="text-white bg-primary-700 hover:bg-primary-800 font-medium rounded-lg text-sm px-5 py-2.5"
+                >
+                  Update Profile
+                </button>
+                <button
+                  type="button"
+                  className="text-red-600 border border-red-600 hover:text-white hover:bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5"
+                >
+                  Delete Account
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+};
+
+export default TeacherProfEdit;

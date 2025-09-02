@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
       <Header />
       <main
         style={{
-          minHeight: "90vh",
+          minHeight: "80vh",
           backgroundColor: "#111828",
         }}
       >

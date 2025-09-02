@@ -1,5 +1,7 @@
+import { hashPassword } from "../helpers/authHelper.js";
 import userModel from "../models/userModel.js";
 
+// register new teacher contorller
 export const registerController = async (req, res) => {
   try {
     const {
@@ -172,6 +174,65 @@ export const AllTeachersCount = async (req, res) => {
       success: false,
       message: "Internal Server Error",
       error: error.message,
+    });
+  }
+};
+
+// Function for updating profile
+
+export const UpdateTeacher = async (req, res) => {
+  try {
+    const {
+      name,
+      lastname,
+      email,
+      role,
+      age,
+      phone,
+      gender,
+      education,
+      teachingmode,
+      experienceyears,
+      password,
+      subjects,
+      description,
+    } = req.body;
+    const user = await userModel.findById(req.user._id);
+    //password
+    if (password && password.length < 6) {
+      return res.json({ error: "Passsword is required and 6 character long" });
+    }
+    const hashedPassword = password ? await hashPassword(password) : undefined;
+    const updatedUser = await userModel.findByIdAndUpdate(
+      req.user._id,
+      {
+        name: name || user.name,
+        lastname: lastname || user.lastname,
+        email: email || user.email,
+        role: role || user.role,
+        age: age || user.age,
+        password: hashedPassword || user.password,
+        phone: phone || user.phone,
+        gender: gender || user.gender,
+        education: education || user.education,
+        teachingmode: teachingmode || user.teachingmode,
+        experienceyears: experienceyears || user.experienceyears,
+        subjects: subjects || user.subjects,
+        description: description || user.description,
+      },
+      { new: true }
+    );
+    res.status(200).send({
+      success: true,
+      message: "Profile Updated SUccessfully",
+      updatedUser,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error while Update profile",
+      error,
     });
   }
 };

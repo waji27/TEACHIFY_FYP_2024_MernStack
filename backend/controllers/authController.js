@@ -2,7 +2,7 @@ import userModel from "../models/userModel.js";
 import { comparePassword, hashPassword } from "./../helpers/authHelper.js";
 import JWT from "jsonwebtoken";
 
-// register controller
+// register new user controller
 export const registerController = async (req, res) => {
   try {
     const { email, password, confirmPassword, agreement } = req.body;
@@ -90,15 +90,16 @@ export const loginController = async (req, res) => {
     });
     res.status(200).send({
       success: true,
-      message: "login successfully",
-      user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        phone: user.phone,
-        address: user.address,
-        role: user.role,
-      },
+      message: "Login Successfully!",
+      user,
+      // : {
+      //   _id: user._id,
+      //   name: user.name,
+      //   email: user.email,
+      //   phone: user.phone,
+      //   address: user.address,
+      //   role: user.role,
+      // },
       token,
     });
   } catch (error) {

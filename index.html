@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home backer</title>
+    <style>
+      * {
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+      }
+      .container {
+        height: 400vh;
+        border: 5px solid greenyellow;
+      }
+      /* 
+      .backer {
+        height: 100px;
+        width: 100px;
+        border: 2px solid rgb(107, 100, 100);
+        position: absolute;
+        margin: 80vh auto auto 70vw;
+        display: none;
+      } */
+      #backToTopBtn {
+        display: none; /* Hidden by default */
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        z-index: 99; /* Stay on top */
+        font-size: 18px;
+        border: none;
+        outline: none;
+        background-color: #007bff; /* Blue */
+        color: white;
+        cursor: pointer;
+        padding: 15px;
+        border-radius: 50%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s ease;
+      }
+
+      #backToTopBtn:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Back to Top Button -->
+      <button onclick="scrollToTop()" id="backToTopBtn" title="Go to top">
+        ↑
+      </button>
+    </div>
+
+    <script>
+      // Show or hide the button based on scroll position
+      window.onscroll = function () {
+        const btn = document.getElementById("backToTopBtn");
+        if (
+          document.body.scrollTop > 300 ||
+          document.documentElement.scrollTop > 300
+        ) {
+          btn.style.display = "block";
+        } else {
+          btn.style.display = "none";
+        }
+      };
+
+      // Scroll to the top smoothly when button is clicked
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+    </script>
+  </body>
+</html>

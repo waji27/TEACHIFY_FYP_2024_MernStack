@@ -1,92 +1,216 @@
 import React from "react";
 import Layout from "../../components/Layout";
 import { useAuth } from "../../context/auth.jsx";
+import { Link } from "react-router-dom";
 
 const StudentDashboard = () => {
   const [auth, setAuth] = useAuth();
 
   return (
     <Layout>
-      <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-        <div className="flex justify-end px-4 pt-4">
-          <button
-            id="dropdownButton"
-            data-dropdown-toggle="dropdown"
-            className="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
-            type="button"
-          >
-            <span className="sr-only">Open dropdown</span>
-            <svg
-              className="w-5 h-5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 16 3"
-            >
-              <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
-            </svg>
-          </button>
-          {/* Dropdown menu */}
+      <section className="bg-gray-50 dark:bg-gray-900 flex items-start py-3">
+        <div className="max-w-screen-xl px-4 mx-auto lg:px-12 w-full">
+          {/* Start coding here */}
+          <div className="relative bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
+            <div className="flex items-center justify-center p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
+              <Link
+                to="/teacher-dashboard"
+                className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
+              >
+                Profile
+              </Link>
+              <Link
+                to={
+                  auth?.user?.role === "teacher"
+                    ? "/teacher-edit-profile"
+                    : "/student-edit-profile"
+                }
+                className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
+              >
+                Edit Profile
+              </Link>
+              <Link
+                to="/student-posts"
+                type="button"
+                className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
+              >
+                Posts
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-gray-50 dark:bg-gray-900">
+        <div>
+          {/* Main modal */}
           <div
-            id="dropdown"
-            className="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700"
+            id="updateProductModal"
+            tabIndex={-1}
+            aria-hidden="true"
+            className=" overflow-y-auto overflow-x-hidden justify-center items-center w-full md:inset-0 h-modal md:h-full pb-8"
           >
-            <ul className="py-2" aria-labelledby="dropdownButton">
-              <li>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                >
-                  Edit
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                >
-                  Export Data
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                >
-                  Delete
-                </a>
-              </li>
-            </ul>
+            <div className="relative px-12 w-full h-full md:h-auto">
+              {/* Modal content */}
+              <div className="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+                {/* Modal header */}
+                <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    Profile
+                  </h3>
+                </div>
+                {/* User Profile data*/}
+                <div className="grid gap-4 mb-4 sm:grid-cols-2">
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Name
+                    </label>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      {auth?.user?.name}
+                    </label>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="brand"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Email
+                    </label>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="brand"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      {auth?.user?.email}
+                    </label>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="price"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Age
+                    </label>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="price"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      {auth?.user?.age}
+                    </label>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="price"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Gender
+                    </label>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="price"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      {auth?.user?.gender}
+                    </label>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="price"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Subjects
+                    </label>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="price"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      {auth?.user?.subjects}
+                    </label>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="price"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Password
+                    </label>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="price"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      {auth?.user?.password}
+                    </label>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="price"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Phone No
+                    </label>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="price"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      {auth?.user?.phone}
+                    </label>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="price"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Education
+                    </label>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="price"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      {auth?.user?.education}
+                    </label>
+                  </div>
+                  {/* <div>
+                    <label
+                      htmlFor="price"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Description
+                    </label>
+                  </div> 
+                  <div>
+                    <label
+                      htmlFor="price"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      {auth?.user?.description}
+                    </label>
+                  </div> */}
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="flex flex-col items-center pb-10">
-          <img
-            className="w-24 h-24 mb-3 rounded-full shadow-lg"
-            src="/docs/images/people/profile-picture-3.jpg"
-            alt="Bonnie image"
-          />
-          <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-            {auth.user.name}
-          </h5>
-          <span className="text-sm text-gray-500 dark:text-gray-400">
-            {auth.user.email}
-          </span>
-          <div className="flex mt-4 md:mt-6">
-            <a
-              href="#"
-              className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Add friend
-            </a>
-            <a
-              href="#"
-              className="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-            >
-              Message
-            </a>
-          </div>
-        </div>
-      </div>
+        </div>{" "}
+      </section>
     </Layout>
   );
 };

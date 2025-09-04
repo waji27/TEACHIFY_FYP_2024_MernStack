@@ -1,3 +1,4 @@
+import PostsModel from "../models/PostsModel.js";
 import userModel from "../models/userModel.js";
 
 // Controller function for registering a new student
@@ -136,5 +137,46 @@ export const AllStudentsCount = async (req, res) => {
       message: "Internal Server Error",
       error: error.message,
     });
+  }
+};
+
+// Controller for adding new post by user
+export const AddNewPostController = async (req, res) => {
+  try {
+    const { title, description, teachingmode, userId } = req.body;
+    const post = await PostsModel.create({
+      title,
+      description,
+      teachingmode,
+      user: userId,
+    });
+    res.status(201).send({ message: "Post created Successfully!", post });
+  } catch (error) {
+    res.status(500).send({ message: "Some thing went wrong", error });
+  }
+};
+
+// Controller for getting all posts by a single user
+export const GetAllPostsbyUserController = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const posts = await PostsModel.find({ user: userId }).sort({
+      createdAt: -1,
+    });
+    res.status(201).send({ message: "Posts fetched Successfully!", posts });
+  } catch (error) {
+    res.status(500).send({ message: "Some thing went wrong", error });
+  }
+};
+
+// Controller for getting all posts
+export const GetAllPostsController = async (req, res) => {
+  try {
+    const posts = await PostsModel.find().sort({
+      createdAt: -1,
+    });
+    res.status(201).send({ message: "All Posts fetched Successfully!", posts });
+  } catch (error) {
+    res.status(500).send({ message: "Some thing went wrong", error });
   }
 };

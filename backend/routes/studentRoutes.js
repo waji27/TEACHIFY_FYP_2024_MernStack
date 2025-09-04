@@ -1,6 +1,9 @@
 import express from "express";
 import {
+  AddNewPostController,
   AllStudentsCount,
+  GetAllPostsbyUserController,
+  GetAllPostsController,
   getAllStudentsController,
   registerController,
 } from "../controllers/studentController.js";
@@ -17,5 +20,14 @@ router.post("/get-all-students", getAllStudentsController);
 
 //GET ALL Students Count || METHOD POST
 router.get("/student-count", AllStudentsCount);
+
+//GET ALL Students Count || METHOD POST
+router.get("/add-new-post", AddNewPostController);
+
+//GET ALL Students Count || METHOD POST
+router.get("/get-all-posts", GetAllPostsbyUserController);
+
+//GET ALL Students Count || METHOD POST
+router.get("/get-all-posts", GetAllPostsController);
 
 export default router;

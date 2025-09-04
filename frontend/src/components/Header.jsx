@@ -146,11 +146,11 @@ const Header = () => {
                   <button className="block py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white">
                     Services ▾
                   </button>
-                  <ul className="absolute hidden group-hover:block bg-white shadow-lg rounded-lg dark:bg-gray-800 z-10">
+                  <ul className="absolute hidden group-hover:block bg-white shadow-lg rounded-lg dark:bg-gray-800 z-10 p-3">
                     <li>
                       <Link
                         to="/all-teachers"
-                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
+                        className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 my-2"
                       >
                         Teachers
                       </Link>
@@ -158,7 +158,7 @@ const Header = () => {
                     <li>
                       <Link
                         to="/posts"
-                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
+                        className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 my-2"
                       >
                         Posts
                       </Link>

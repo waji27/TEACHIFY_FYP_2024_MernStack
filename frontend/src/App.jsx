@@ -20,6 +20,7 @@ import Payment from "./pages/Payment";
 import Posts from "./pages/posts/Posts";
 import AddNewPost from "./pages/posts/AddNewPost";
 import UserPosts from "./pages/posts/UserPosts";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
         <Route path="/add-new-post" element={<AddNewPost />} />
         <Route path="/posts-by-user" element={<UserPosts />} />
         <Route path="/payment" element={<Payment />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </>
   );

@@ -22,10 +22,10 @@ router.post("/get-all-students", getAllStudentsController);
 router.get("/student-count", AllStudentsCount);
 
 //GET ALL Students Count || METHOD POST
-router.get("/add-new-post", AddNewPostController);
+router.post("/add-new-post", AddNewPostController);
 
 //GET ALL Students Count || METHOD POST
-router.get("/get-all-posts", GetAllPostsbyUserController);
+router.get("/get-all-posts-by-user", GetAllPostsbyUserController);
 
 //GET ALL Students Count || METHOD POST
 router.get("/get-all-posts", GetAllPostsController);

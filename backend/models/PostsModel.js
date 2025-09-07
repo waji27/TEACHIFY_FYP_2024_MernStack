@@ -2,21 +2,24 @@ import mongoose from "mongoose";
 
 const postSchema = new mongoose.Schema(
   {
-    title: {
+    posttitle: {
       type: String,
       required: true,
+      trim: true,
     },
-    description: {
+    postdescription: {
       type: String,
       required: true,
+      trim: true,
     },
     teachingmode: {
       type: String,
       required: true,
+      enum: ["online", "offline", "hybrid"], // optional validation
     },
-    user: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "users",
       required: true,
     },
   },

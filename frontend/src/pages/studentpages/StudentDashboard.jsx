@@ -2,44 +2,14 @@ import React from "react";
 import Layout from "../../components/Layout";
 import { useAuth } from "../../context/auth.jsx";
 import { Link } from "react-router-dom";
+import UserDashboardMenu from "../../components/UserDashboardMenu.jsx";
 
 const StudentDashboard = () => {
   const [auth, setAuth] = useAuth();
 
   return (
     <Layout>
-      <section className="bg-gray-50 dark:bg-gray-900 flex items-start py-3">
-        <div className="max-w-screen-xl px-4 mx-auto lg:px-12 w-full">
-          {/* Start coding here */}
-          <div className="relative bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
-            <div className="flex items-center justify-center p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
-              <Link
-                to="/teacher-dashboard"
-                className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
-              >
-                Profile
-              </Link>
-              <Link
-                to={
-                  auth?.user?.role === "teacher"
-                    ? "/teacher-edit-profile"
-                    : "/student-edit-profile"
-                }
-                className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
-              >
-                Edit Profile
-              </Link>
-              <Link
-                to="/student-posts"
-                type="button"
-                className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
-              >
-                Posts
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <UserDashboardMenu />
 
       <section className="bg-gray-50 dark:bg-gray-900">
         <div>
@@ -52,7 +22,7 @@ const StudentDashboard = () => {
           >
             <div className="relative px-12 w-full h-full md:h-auto">
               {/* Modal content */}
-              <div className="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+              <div className="relative p-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
                 {/* Modal header */}
                 <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">

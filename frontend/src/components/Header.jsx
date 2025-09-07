@@ -149,6 +149,22 @@ const Header = () => {
                   <ul className="absolute hidden group-hover:block bg-white shadow-lg rounded-lg dark:bg-gray-800 z-10 p-3">
                     <li>
                       <Link
+                        to="/posts"
+                        className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 my-2"
+                      >
+                        Posts
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/pricing"
+                        className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      >
+                        Pricing
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
                         to="/all-teachers"
                         className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 my-2"
                       >
@@ -157,20 +173,20 @@ const Header = () => {
                     </li>
                     <li>
                       <Link
-                        to="/posts"
+                        to="/all-students"
                         className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 my-2"
                       >
-                        Posts
+                        Students
                       </Link>
                     </li>
                   </ul>
                 </li>
                 <li>
                   <Link
-                    to="/pricing"
+                    to="/contact"
                     className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                   >
-                    Pricing
+                    Contact
                   </Link>
                 </li>
               </ul>

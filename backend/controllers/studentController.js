@@ -6,58 +6,23 @@ export const registerController = async (req, res) => {
   try {
     const { email, name, lastname, phone, subjects, education, gender, age } =
       req.body;
-    if (!email) {
-      return res.send({
+    if (
+      !email ||
+      !name ||
+      !lastname ||
+      !phone ||
+      !subjects ||
+      !education ||
+      !gender ||
+      !age
+    ) {
+      return res.status(400).send({
         success: false,
-        message: "email missing",
-      });
-    }
-    if (!name) {
-      return res.send({
-        success: false,
-        message: "name missing",
-      });
-    }
-    if (!lastname) {
-      return res.send({
-        success: false,
-        message: "lastname missing",
-      });
-    }
-    if (!phone) {
-      return res.send({
-        success: false,
-        message: "phone missing",
-      });
-    }
-    if (!subjects) {
-      return res.send({
-        success: false,
-        message: "subjects missing",
-      });
-    }
-    if (!education) {
-      return res.send({
-        success: false,
-        message: "education missing",
-      });
-    }
-
-    if (!gender) {
-      return res.send({
-        success: false,
-        message: "gender missing",
-      });
-    }
-    if (!age) {
-      return res.send({
-        success: false,
-        message: "age missing",
+        message: "All fields required",
       });
     }
 
     const user = await userModel.findOne({ email: email });
-
     if (!user) {
       return res.status(404).send({
         success: false,
@@ -143,14 +108,34 @@ export const AllStudentsCount = async (req, res) => {
 // Controller for adding new post by user
 export const AddNewPostController = async (req, res) => {
   try {
-    const { title, description, teachingmode, userId } = req.body;
-    const post = await PostsModel.create({
-      title,
-      description,
+    const { posttitle, teachingmode, postdescription, userId } = req.body;
+
+    if (!posttitle || !postdescription || !teachingmode || !userId) {
+      return res
+        .status(400)
+        .send({ success: false, message: "All fields are required" });
+    }
+
+    // check if post already exits and return
+    // const existingPost = await PostsModel.find({ posttitle: posttitle });
+    // if (existingPost) {
+    //   return res.status(403).send({
+    //     success: false,
+    //     message: "Post already exits with this title",
+    //     existingPost,
+    //   });
+    // }
+
+    const post = await new PostsModel({
+      posttitle,
+      postdescription,
       teachingmode,
-      user: userId,
-    });
-    res.status(201).send({ message: "Post created Successfully!", post });
+      userId,
+    }).save();
+
+    res
+      .status(201)
+      .send({ success: true, message: "Post created Successfully!", post });
   } catch (error) {
     res.status(500).send({ message: "Some thing went wrong", error });
   }
@@ -160,9 +145,7 @@ export const AddNewPostController = async (req, res) => {
 export const GetAllPostsbyUserController = async (req, res) => {
   try {
     const { userId } = req.params;
-    const posts = await PostsModel.find({ user: userId }).sort({
-      createdAt: -1,
-    });
+    const posts = await PostsModel.find({ user: userId });
     res.status(201).send({ message: "Posts fetched Successfully!", posts });
   } catch (error) {
     res.status(500).send({ message: "Some thing went wrong", error });
@@ -172,8 +155,9 @@ export const GetAllPostsbyUserController = async (req, res) => {
 // Controller for getting all posts
 export const GetAllPostsController = async (req, res) => {
   try {
-    const posts = await PostsModel.find().sort({
-      createdAt: -1,
+    const posts = await PostsModel.find().populate({
+      path: "userId",
+      select: "name lastname",
     });
     res.status(201).send({ message: "All Posts fetched Successfully!", posts });
   } catch (error) {

@@ -146,7 +146,7 @@ const Header = () => {
                   <button className="block py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white">
                     Services ▾
                   </button>
-                  <ul className="absolute hidden group-hover:block bg-white shadow-lg rounded-lg dark:bg-gray-800 z-10 p-3">
+                  <ul className="absolute hidden group-hover:block bg-white shadow-lg rounded-lg dark:bg-gray-800 z-10 px-4 py-2">
                     <li>
                       <Link
                         to="/posts"

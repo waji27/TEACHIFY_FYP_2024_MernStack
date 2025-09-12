@@ -21,6 +21,7 @@ import Posts from "./pages/posts/Posts";
 import AddNewPost from "./pages/posts/AddNewPost";
 import UserPosts from "./pages/posts/UserPosts";
 import Contact from "./pages/Contact";
+import About from "./pages/teacherpages/About";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
         <Route path="/posts-by-user" element={<UserPosts />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </>
   );

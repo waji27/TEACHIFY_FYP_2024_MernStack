@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/auth.jsx";
 import toast from "react-hot-toast";
-import logo from "../assets/file.svg";
+import logo from "../assets/logs.png";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();

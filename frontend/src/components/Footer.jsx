@@ -1,7 +1,7 @@
 import React from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-import logo from "../assets/file.svg";
+import logo from "../assets/logs.png";
 
 const Footer = () => {
   const toastComingSoon = () => {

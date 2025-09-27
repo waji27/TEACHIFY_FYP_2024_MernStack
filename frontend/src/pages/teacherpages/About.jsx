@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../../components/Layout";
 import Kashif from "../../assets/Kashif.png";
 import Wajdan from "../../assets/Wajdan.jpeg";
+import logo from "../../assets/logs.png";
 
 const About = () => {
   return (
@@ -9,15 +10,22 @@ const About = () => {
       {/* About Section  */}
       <section className="pt-4 bg-white dark:bg-gray-900">
         <div className=" px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
-          <div className="mx-auto mb-8 max-w-screen-sm lg:mb-16">
+          <div className="w-16 mx-auto mb-8 lg:mb-16">
+            <img
+              src={logo}
+              //   src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png"
+              alt="logo"
+            />
+          </div>
+          {/* <div className="mx-auto mb-8 lg:mb-16">
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
               TEACHIFY
             </h2>
             <p className="font-light text-gray-500 sm:text-xl dark:text-gray-400">
               Platform for connecting Teachers and Students
             </p>
-          </div>
-          <div className="mx-auto mb-8 max-w-screen-sm lg:mb-16">
+          </div> */}
+          <div className="mx-auto mb-8 lg:mb-16">
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
               About Teachify
             </h2>
@@ -34,7 +42,7 @@ const About = () => {
               profiles, highlight their skills, and respond to student requests.{" "}
             </p>
           </div>
-          <div className="mx-auto mb-8 max-w-screen-sm lg:mb-16">
+          <div className="mx-auto mb-8 lg:mb-16">
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
               Our Mission
             </h2>
@@ -44,7 +52,7 @@ const About = () => {
               a seamless digital experience.
             </p>
           </div>
-          <div className="mx-auto mb-8 max-w-screen-sm lg:mb-16">
+          <div className="mx-auto mb-8 lg:mb-16">
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
               What We Offer
             </h2>
@@ -55,7 +63,7 @@ const About = () => {
               a smooth, secure, and user-friendly experience.
             </p>
           </div>
-          <div className="mx-auto mb-8 max-w-screen-sm lg:mb-16">
+          <div className="mx-auto mb-8 lg:mb-16">
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
               Why Teachify?
             </h2>

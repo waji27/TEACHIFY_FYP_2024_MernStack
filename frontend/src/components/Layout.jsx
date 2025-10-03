@@ -37,9 +37,9 @@ const Layout = ({ children }) => {
     <>
       <Header />
       <main
+        className="dark:bg-gray900"
         style={{
           minHeight: "80vh",
-          backgroundColor: "#111828",
         }}
       >
         <Toaster />

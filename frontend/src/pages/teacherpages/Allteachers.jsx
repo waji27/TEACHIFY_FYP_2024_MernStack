@@ -26,7 +26,7 @@ const Allteachers = () => {
 
   return (
     <Layout>
-      <Filtercomponent />
+      {/* <Filtercomponent /> */}
       <section className="bg-white dark:bg-gray-900">
         <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
           <div className="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
@@ -42,27 +42,47 @@ const Allteachers = () => {
               >
                 <a href="#">
                   <img
-                    className="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                    src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
-                    alt="Jese Avatar"
+                    className=" rounded-lg sm:rounded-none sm:rounded-l-lg h-64 object-cover w-64"
+                    src={
+                      eachTeacher.profilePicture
+                        ? `http://localhost:3030${eachTeacher.profilePicture}`
+                        : "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
+                    }
+                    alt={`${eachTeacher.name} Avatar`}
                   />
                 </a>
                 <div className="p-5  w-3/4">
                   <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    <h1 href="#">
+                    <h1 className="py-2">
                       {eachTeacher.name} {eachTeacher.lastname}
                     </h1>
                   </h3>
-                  <span className="text-gray-500 dark:text-gray-200">
+                  <span className="text-gray-500 dark:text-gray-200 font-semibold">
                     Subjects:{" "}
-                    <span className="dark:text-yellow-200">
-                      {eachTeacher.subjects}
+                    <span className="dark:text-yellow-200 font-light">
+                      {eachTeacher.subjects.substring(0, 20) + "..."}
                     </span>
                   </span>
-                  <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
-                    {eachTeacher.description.substring(0, 30) + "..."}
+                  <p className="text-gray-500 dark:text-gray-200 font-semibold">
+                    Education:{" "}
+                    <span className="dark:text-yellow-200 font-light">
+                      {eachTeacher.education.substring(0, 20) + "..."}
+                    </span>
                   </p>
-                  {/* <ul className="flex space-x-4 sm:mt-0">
+                  <p className="text-gray-500 dark:text-gray-200 font-semibold">
+                    Description:{" "}
+                    <span className="dark:text-yellow-200 font-light">
+                      {eachTeacher.description.substring(0, 30) + "..."}
+                    </span>
+                  </p>
+                  <h3 className="mt-3 mb-4 font-semibold text-gray-500 dark:text-gray-400">
+                    Teaching Mode:{" "}
+                    <span className="dark:text-green-500 text-gray-500 font-light">
+                      {eachTeacher.teachingmode}
+                    </span>
+                  </h3>
+                  {/* social media icons of teacher  */}
+                  <ul className="flex space-x-4">
                     <li>
                       <a
                         href="#"
@@ -134,16 +154,6 @@ const Allteachers = () => {
                           />
                         </svg>
                       </a>
-                    </li>
-                  </ul> */}
-                  <ul className="flex space-x-4 sm:mt-0">
-                    <li>
-                      <h3 className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
-                        Teaching Mode:{" "}
-                        <span className="dark:text-green-500 text-gray-500">
-                          {eachTeacher.teachingmode}
-                        </span>
-                      </h3>
                     </li>
                   </ul>
                 </div>

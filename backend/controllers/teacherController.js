@@ -1,5 +1,6 @@
 import { hashPassword } from "../helpers/authHelper.js";
 import userModel from "../models/userModel.js";
+import path from "path";
 
 // register new teacher contorller
 export const registerController = async (req, res) => {
@@ -18,6 +19,12 @@ export const registerController = async (req, res) => {
       experienceyears,
       description,
     } = req.body;
+
+    // Handle profile picture upload
+    let profilePicture = "";
+    if (req.file) {
+      profilePicture = `/uploads/profiles/${req.file.filename}`;
+    }
     if (!email) {
       return res.send({
         success: false,
@@ -91,7 +98,6 @@ export const registerController = async (req, res) => {
         message: "description missing",
       });
     }
-
     const user = await userModel.findOne({ email: email });
 
     if (!user) {
@@ -120,6 +126,9 @@ export const registerController = async (req, res) => {
       user.experienceyears = experienceyears;
       user.age = age;
       user.description = description;
+      user.profilePicture = profilePicture;
+      // award default tokens on successful teacher registration
+      user.tokens = 100;
     }
 
     const updatedUser = await user.save();
@@ -233,6 +242,54 @@ export const UpdateTeacher = async (req, res) => {
       success: false,
       message: "Error while Update profile",
       error,
+    });
+  }
+};
+
+// Controller for applying to a post and deducting tokens
+export const ApplyToPostAndDeductTokens = async (req, res) => {
+  try {
+    const userId = req.user?._id;
+    const { postId, cost } = req.body;
+
+    // basic validation
+    if (!userId) {
+      return res.status(401).send({ success: false, message: "Unauthorized" });
+    }
+    if (!postId) {
+      return res
+        .status(400)
+        .send({ success: false, message: "postId is required" });
+    }
+
+    // default deduction cost is 15 tokens unless provided and valid
+    const deduction = Number.isFinite(Number(cost)) ? Number(cost) : 15;
+
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).send({ success: false, message: "User not found" });
+    }
+
+    if (user.tokens < deduction) {
+      return res
+        .status(400)
+        .send({ success: false, message: "Insufficient tokens" });
+    }
+
+    user.tokens = user.tokens - deduction;
+    await user.save();
+
+    return res.status(200).send({
+      success: true,
+      message: "Applied successfully and tokens deducted",
+      tokens: user.tokens,
+    });
+  } catch (error) {
+    console.error("Error in ApplyToPostAndDeductTokens:", error);
+    return res.status(500).send({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message,
     });
   }
 };

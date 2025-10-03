@@ -110,18 +110,17 @@ const Home = () => {
         <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
           <div className="max-w-screen mb-8 lg:mb-16">
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white text-center">
-              Services We are Providing
+              What you can do on Teachify
             </h2>
             <p className="text-gray-500 sm:text-xl dark:text-gray-400 text-center">
-              Here at Flowbite we focus on markets where technology, innovation,
-              and capital can unlock long-term value and drive economic growth.
+              Core features built to connect teachers and students efficiently.
             </p>
           </div>
           <div className="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
             <div>
               <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
                 <svg
-                  className="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+                  className="w-5 h-5 text-primary-950 lg:w-6 lg:h-6 dark:text-primary-950"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -129,19 +128,13 @@ const Home = () => {
                   <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
                 </svg>
               </div>
-              <h3 className="mb-2 text-xl font-bold dark:text-white">
-                Teaching Profile
-              </h3>
-              <p className="text-gray-500 dark:text-gray-400">
-                Teachers can create and manage impressive profiles to get known
-                by his/her profession and get more jobs and offers and personal
-                tutions.
-              </p>
+              <h3 className="mb-2 text-xl font-bold dark:text-white">Build Your Teaching Profile</h3>
+              <p className="text-gray-500 dark:text-gray-400">Showcase your expertise, experience, subjects, and teaching modes to get discovered by students.</p>
             </div>
             <div>
               <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
                 <svg
-                  className="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+                  className="w-5 h-5 text-primary-950 lg:w-6 lg:h-6 dark:text-primary-950"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -149,19 +142,13 @@ const Home = () => {
                   <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
                 </svg>
               </div>
-              <h3 className="mb-2 text-xl font-bold dark:text-white">
-                Student Profile
-              </h3>
-              <p className="text-gray-500 dark:text-gray-400">
-                Our platform allow students to make their profiles and can look
-                for best teachers with advanced filtering in order to match
-                their requirements more deeply.
-              </p>
+              <h3 className="mb-2 text-xl font-bold dark:text-white">Create a Student Profile</h3>
+              <p className="text-gray-500 dark:text-gray-400">Let teachers know your learning goals, preferred mode, and subjects to get better matches.</p>
             </div>
             <div>
               <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
                 <svg
-                  className="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+                  className="w-5 h-5 text-primary-950 lg:w-6 lg:h-6 dark:text-primary-950"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -174,18 +161,13 @@ const Home = () => {
                   <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z" />
                 </svg>
               </div>
-              <h3 className="mb-2 text-xl font-bold dark:text-white">
-                Business Automation
-              </h3>
-              <p className="text-gray-500 dark:text-gray-400">
-                Auto-assign tasks, send Slack messages, and much more. Now power
-                up with hundreds of new templates to help you get started.
-              </p>
+              <h3 className="mb-2 text-xl font-bold dark:text-white">Post & Apply</h3>
+              <p className="text-gray-500 dark:text-gray-400">Add posts describing your requirements and apply to relevant opportunities with a token-based system.</p>
             </div>
             <div>
               <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
                 <svg
-                  className="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+                  className="w-5 h-5 text-primary-950 lg:w-6 lg:h-6 dark:text-primary-950"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -198,18 +180,13 @@ const Home = () => {
                   />
                 </svg>
               </div>
-              <h3 className="mb-2 text-xl font-bold dark:text-white">
-                Finance
-              </h3>
-              <p className="text-gray-500 dark:text-gray-400">
-                Audit-proof software built for critical financial operations
-                like month-end close and quarterly budgeting.
-              </p>
+              <h3 className="mb-2 text-xl font-bold dark:text-white">Token Plans</h3>
+              <p className="text-gray-500 dark:text-gray-400">Buy tokens that power applying to posts. Choose a plan that fits your activity level.</p>
             </div>
             <div>
               <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
                 <svg
-                  className="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+                  className="w-5 h-5 text-primary-950 lg:w-6 lg:h-6 dark:text-primary-950"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -217,18 +194,13 @@ const Home = () => {
                   <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z" />
                 </svg>
               </div>
-              <h3 className="mb-2 text-xl font-bold dark:text-white">
-                Enterprise Design
-              </h3>
-              <p className="text-gray-500 dark:text-gray-400">
-                Craft beautiful, delightful experiences for both marketing and
-                product with real cross-company collaboration.
-              </p>
+              <h3 className="mb-2 text-xl font-bold dark:text-white">Smart Matching</h3>
+              <p className="text-gray-500 dark:text-gray-400">Filters by subject, mode, and experience help you quickly find the right connection.</p>
             </div>
             <div>
               <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
                 <svg
-                  className="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+                  className="w-5 h-5 text-primary-950 lg:w-6 lg:h-6 dark:text-primary-950"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -240,14 +212,8 @@ const Home = () => {
                   />
                 </svg>
               </div>
-              <h3 className="mb-2 text-xl font-bold dark:text-white">
-                Operations
-              </h3>
-              <p className="text-gray-500 dark:text-gray-400">
-                Keep your company’s lights on with customizable, iterative, and
-                structured workflows built for all efficient teams and
-                individual.
-              </p>
+              <h3 className="mb-2 text-xl font-bold dark:text-white">Dashboard & Controls</h3>
+              <p className="text-gray-500 dark:text-gray-400">Manage your profile, track tokens, and monitor your posts and applications in one place.</p>
             </div>
           </div>
         </div>
@@ -267,9 +233,9 @@ const Home = () => {
           <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
             {/* Pricing Card */}
             <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
-              <h3 className="mb-4 text-2xl font-semibold">Beginner Plan</h3>
+              <h3 className="mb-4 text-2xl font-semibold">Starter Tokens</h3>
               <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-                Best option for personal use &amp; for your next project.
+                Get started with enough tokens to apply to a few posts.
               </p>
               <div className="flex justify-center items-baseline my-8">
                 <span className="mr-2 text-5xl font-extrabold">Rs.500</span>
@@ -291,7 +257,7 @@ const Home = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span>100 Bitas Coins</span>
+                  <span>100 Tokens</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   {/* Icon */}
@@ -307,7 +273,7 @@ const Home = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span>Expiry: 2 months</span>
+                  <span>Apply to ~6 posts (15 tokens each)</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   {/* Icon */}
@@ -323,10 +289,7 @@ const Home = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span>
-                    Team size:{" "}
-                    <span className="font-semibold">1 developer</span>
-                  </span>
+                  <span>No expiry</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   {/* Icon */}
@@ -342,10 +305,7 @@ const Home = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span>
-                    Premium support:{" "}
-                    <span className="font-semibold">6 months</span>
-                  </span>
+                  <span>Email support</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   {/* Icon */}
@@ -361,24 +321,21 @@ const Home = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span>
-                    Free updates:{" "}
-                    <span className="font-semibold">6 months</span>
-                  </span>
+                  <span>Instant delivery</span>
                 </li>
               </ul>
               <a
                 href="#"
                 className="text-white bg-primary-950 hover:bg-primary-970 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-blue-900"
               >
-                Get started
+                Buy Tokens
               </a>
             </div>
             {/* Pricing Card */}
             <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
-              <h3 className="mb-4 text-2xl font-semibold">Standard Plan</h3>
+              <h3 className="mb-4 text-2xl font-semibold">Pro Tokens</h3>
               <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-                Relevant for multiple users, extended &amp; premium support.
+                For active users applying to many posts monthly.
               </p>
               <div className="flex justify-center items-baseline my-8">
                 <span className="mr-2 text-5xl font-extrabold">Rs.1500</span>
@@ -400,7 +357,7 @@ const Home = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span>330 Bitas Coins</span>
+                  <span>350 Tokens</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   {/* Icon */}
@@ -416,7 +373,7 @@ const Home = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span>Expiry: 6 months</span>
+                  <span>Apply to ~23 posts</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   {/* Icon */}
@@ -432,10 +389,7 @@ const Home = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span>
-                    Team size:{" "}
-                    <span className="font-semibold">10 developers</span>
-                  </span>
+                  <span>No expiry</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   {/* Icon */}
@@ -451,10 +405,7 @@ const Home = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span>
-                    Premium support:{" "}
-                    <span className="font-semibold">24 months</span>
-                  </span>
+                  <span>Priority support</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   {/* Icon */}
@@ -470,24 +421,21 @@ const Home = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span>
-                    Free updates:{" "}
-                    <span className="font-semibold">24 months</span>
-                  </span>
+                  <span>Instant delivery</span>
                 </li>
               </ul>
               <a
                 href="#"
                 className="text-white bg-primary-950 hover:bg-primary-970 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-blue-900"
               >
-                Get started
+                Buy Tokens
               </a>
             </div>
             {/* Pricing Card */}
             <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
-              <h3 className="mb-4 text-2xl font-semibold">Premium Plan</h3>
+              <h3 className="mb-4 text-2xl font-semibold">Enterprise Tokens</h3>
               <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-                Best for large scale uses and extended redistribution rights.
+                For agencies and power users.
               </p>
               <div className="flex justify-center items-baseline my-8">
                 <span className="mr-2 text-5xl font-extrabold">Rs.2000</span>
@@ -509,7 +457,7 @@ const Home = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span>720 Bitas Coins</span>
+                  <span>750 Tokens</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   {/* Icon */}
@@ -525,7 +473,7 @@ const Home = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span>Expiry: 12 months</span>
+                  <span>Apply to ~50 posts</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   {/* Icon */}
@@ -541,10 +489,7 @@ const Home = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span>
-                    Team size:{" "}
-                    <span className="font-semibold">100+ developers</span>
-                  </span>
+                  <span>No expiry</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   {/* Icon */}
@@ -560,10 +505,7 @@ const Home = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span>
-                    Premium support:{" "}
-                    <span className="font-semibold">36 months</span>
-                  </span>
+                  <span>Dedicated support</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   {/* Icon */}
@@ -579,17 +521,14 @@ const Home = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span>
-                    Free updates:{" "}
-                    <span className="font-semibold">36 months</span>
-                  </span>
+                  <span>Instant delivery</span>
                 </li>
               </ul>
               <a
                 href="#"
                 className="text-white bg-primary-950 hover:bg-primary-970 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-blue-900"
               >
-                Get started
+                Buy Tokens
               </a>
             </div>
           </div>
@@ -597,7 +536,7 @@ const Home = () => {
             <Link
               to="/pricing"
               type="button"
-              class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
+              class="text-primary-950 hover:text-white border border-primary-950 hover:bg-primary-970 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-primary-950 dark:text-white dark:hover:text-white dark:hover:bg-primary-950 dark:focus:ring-blue-800"
             >
               More Details
             </Link>
@@ -606,9 +545,9 @@ const Home = () => {
       </section>
 
       {/* Users count section  */}
-      <section className="bg-white dark:bg-gray-700/20 p-8">
+      <section className="bg-white dark:bg-gray-900 p-8">
         <h1 className=" mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white text-center">
-          World Wide Active Users
+          Active Users
         </h1>
         <div className="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6">
           <dl className="grid max-w-screen-md gap-8 mx-auto text-gray-900 sm:grid-cols-3 dark:text-white">

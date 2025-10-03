@@ -51,15 +51,15 @@ const AffiliateProg = () => {
       <section className="bg-white dark:bg-gray-900">
         <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
           <a
-            href="#"
+            href="#whocanjoin"
             className="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
             role="alert"
           >
-            <span className="text-xs bg-primary-600 rounded-full text-white px-4 py-1.5 mr-3">
+            <span className="text-xs bg-primary-950 rounded-full text-white px-4 py-1.5 mr-3">
               New
             </span>{" "}
             <span className="text-sm font-medium">
-              Flowbite is out! See what's new
+              Join Now and get 100 tokens free!
             </span>
             <svg
               className="ml-2 w-5 h-5"
@@ -87,7 +87,7 @@ const AffiliateProg = () => {
           <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
             <a
               href="#whocanjoin"
-              className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg  bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 shadow-lg shadow-primary-500/50 dark:shadow-lg dark:shadow-primary-800/80"
+              className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg  bg-gradient-to-r from-primary-950 via-primary-950 to-primary-970 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 shadow-lg shadow-primary-500/50 dark:shadow-lg dark:shadow-primary-800/80"
             >
               Lets Join!
               <svg
@@ -125,20 +125,19 @@ const AffiliateProg = () => {
             <div className="flex flex-wrap justify-center items-center mt-8 text-primary-500 sm:justify-between">
               <a
                 href="#whyshouldjoin"
-                className="mr-5 mb-5 lg:mb-0 hover:text-primary-800 text-primary-400 dark:hover:text-primary-400 text-xl"
+                className="mr-5 mb-5 lg:mb-0 hover:text-primary-970 text-primary-950 dark:hover:text-primary-400 text-xl"
               >
                 Why Should I Join!
               </a>
               <a
                 href="#howcanjoin"
-                className="mr-5 mb-5 lg:mb-0 hover:text-primary-800 text-primary-400  dark:hover:text-primary-400 text-xl"
+                className="mr-5 mb-5 lg:mb-0 hover:text-primary-970 text-primary-950 dark:hover:text-primary-400 text-xl"
               >
                 How Can I join!
               </a>
               <a
                 href="#whocanjoin"
-                className="mr-5 mb-5 lg:mb-0 hover:text-primary-800 
-                text-primary-400 dark:hover:text-primary-400 text-xl"
+                className="mr-5 mb-5 lg:mb-0 hover:text-primary-970 text-primary-950 dark:hover:text-primary-400 text-xl"
               >
                 Who Can Join!
               </a>
@@ -339,13 +338,13 @@ const AffiliateProg = () => {
             </p>
             <button
               onClick={handleCLick2}
-              className="text-white bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 shadow-lg shadow-primary-500/50 dark:shadow-lg dark:shadow-primary-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 my-3 w-full"
+              className="text-white bg-gradient-to-r from-primary-950 via-primary-950 to-primary-970 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 shadow-lg shadow-primary-500/50 dark:shadow-lg dark:shadow-primary-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 my-3 w-full"
             >
               Go for a Student!
             </button>
             <button
               onClick={handleCLick}
-              className="text-white bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 shadow-lg shadow-primary-500/50 dark:shadow-lg dark:shadow-primary-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 my-3 w-full"
+              className="text-white bg-gradient-to-r from-primary-950 via-primary-950 to-primary-970 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 shadow-lg shadow-primary-500/50 dark:shadow-lg dark:shadow-primary-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 my-3 w-full"
             >
               Go for a Teacher!
             </button>

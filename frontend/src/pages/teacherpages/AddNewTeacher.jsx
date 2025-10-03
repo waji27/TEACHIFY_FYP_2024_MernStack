@@ -17,6 +17,8 @@ const AddNewTeacher = () => {
   const [experienceyears, setExperienceyears] = useState("0");
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
+  const [profilePicture, setProfilePicture] = useState(null);
+  // tokens are awarded by server; do not collect/send from client
   const navigate = useNavigate();
 
   // Fetch email from localStorage on mount
@@ -31,28 +33,43 @@ const AddNewTeacher = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const formData = new FormData();
+      formData.append("email", email);
+      formData.append("name", name);
+      formData.append("lastname", lastname);
+      formData.append("phone", phone);
+      formData.append("subjects", subjects);
+      formData.append("education", education);
+      formData.append("gender", gender);
+      formData.append("teachingmode", teachingmode);
+      formData.append("age", age);
+      formData.append("experienceyears", experienceyears);
+      formData.append("description", description);
+      formData.append("address", address);
+      
+      if (profilePicture) {
+        formData.append("profilePicture", profilePicture);
+      }
+
       const response = await axios.post(
         "http://localhost:3030/api/v1/teacher/add-new-teacher",
+        formData,
         {
-          email,
-          name,
-          lastname,
-          phone,
-          subjects,
-          education,
-          gender,
-          teachingmode,
-          age,
-          experienceyears,
-          description,
-          address,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
 
       if (response?.data?.success) {
         toast.success(response?.data?.message);
         const userData = JSON.parse(localStorage.getItem("auth")) || {};
-        userData.user.role = "teacher";
+        userData.user = {
+          ...userData.user,
+          role: "teacher",
+          // reflect awarded tokens from server response if available
+          tokens: response?.data?.updatedUser?.tokens ?? userData.user?.tokens,
+        };
         localStorage.setItem("auth", JSON.stringify(userData));
         navigate("/");
       } else {
@@ -66,7 +83,8 @@ const AddNewTeacher = () => {
 
   return (
     <Layout>
-      <section className="p-10">
+      <section className="bg-white dark:bg-gray-900 py-8">
+        <h1 className="text-center">Fill up the form to join us</h1>
         <form onSubmit={handleSubmit} className="max-w-2xl mx-auto">
           {/* user email  */}
           <div className="relative z-0 w-full mb-5 group">
@@ -331,9 +349,28 @@ const AddNewTeacher = () => {
               }}
               id="message"
               rows="4"
-              className="block p-2.5 w-full text-sm text-gray-900 rounded-lg  bg-transparent border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block p-2.5 w-full text-sm text-gray-900 rounded-lg  bg-transparent border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Ex. I am a perfect teacher in Maths..."
             ></textarea>
+          </div>
+
+          {/* Profile Picture  */}
+          <div className="relative z-0 w-full mb-5 group">
+            <label
+              htmlFor="profilePicture"
+              className="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-400"
+            >
+              Profile Picture *
+            </label>
+            <input
+              type="file"
+              id="profilePicture"
+              accept="image/*"
+              onChange={(e) => setProfilePicture(e.target.files[0])}
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400"
+              required
+            />
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Upload a clear profile picture</p>
           </div>
 
           <button

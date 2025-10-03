@@ -3,10 +3,24 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/auth.jsx";
 import toast from "react-hot-toast";
 import logo from "../assets/logs.png";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
   const [Menuopen, setMenuopen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleDahsboardClick = () => {
+    if (auth?.user?.role === "teacher") {
+      navigate("/teacher-dashboard");
+    } else if (auth?.user?.role === "student") {
+      navigate("/student-dashboard");
+    } else if (auth?.user?.role === "1") {
+      navigate("/admin-dashboard");
+    } else {
+      toast.error("You haven't joined Affiliate Program");
+    }
+  };
 
   //phone navigation open/close function
   const handleMenuopen = () => {
@@ -31,8 +45,8 @@ const Header = () => {
 
   return (
     <div>
-      <header>
-        <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+      <header className="border-b-2 border-gray-200 dark:border-gray-500">
+        <nav className="bg-white  px-4 lg:px-6 py-2.5 dark:bg-gray-800">
           <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <Link to="/" className="flex items-center">
               <img
@@ -56,23 +70,27 @@ const Header = () => {
                   </Link>
                   <Link
                     to="/register"
-                    className="text-white bg-primary-950 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+                    className="text-white bg-primary-950 hover:bg-primary-970 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-950 dark:hover:bg-primary-970 focus:outline-none dark:focus:ring-primary-800"
                   >
                     Signup
                   </Link>
                 </>
               ) : (
                 <>
-                  <Link
-                    to={
-                      auth?.user?.role === "teacher"
-                        ? "/teacher-dashboard"
-                        : "/student-dashboard"
-                    }
-                    className="text-gray-800 bg-blue-400 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                  {auth?.user?.role === 1 && (
+                    <Link
+                      to="/admin-dashboard"
+                      className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
+                    >
+                      Admin Panel
+                    </Link>
+                  )}
+                  <button
+                    onClick={handleDahsboardClick}
+                    className="text-white bg-primary-950 dark:text-white hover:bg-primary-970 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-primary-970 focus:outline-none dark:focus:ring-gray-800"
                   >
                     Dashboard
-                  </Link>
+                  </button>
                   <Link
                     onClick={handleLogout}
                     to="/login"
@@ -127,7 +145,7 @@ const Header = () => {
                 <li>
                   <Link
                     to="/"
-                    className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-primary-950 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-950 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700  my-2"
                     aria-current="page"
                   >
                     Home
@@ -136,21 +154,21 @@ const Header = () => {
                 <li>
                   <Link
                     to="/about"
-                    className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-primary-950 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-950 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700  my-2"
                     aria-current="page"
                   >
                     About
                   </Link>
                 </li>
-                <li className="relative group">
-                  <button className="block py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white">
+                {/* <li className="relative group">
+                  <button className="block py-2 pr-4 pl-3 text-gray-700 hover:bg-primary-950 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-950 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white">
                     Services ▾
                   </button>
-                  <ul className="absolute hidden group-hover:block bg-white shadow-lg rounded-lg dark:bg-gray-800 z-10 px-4 py-2">
+                  <ul className="absolute hidden group-hover:block bg-white shadow-lg rounded-lg dark:bg-gray-800 z-10 px-4 py-2 w-40">
                     <li>
                       <Link
                         to="/posts"
-                        className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 my-2"
+                        className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-primary-950 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-950 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 my-2 "
                       >
                         Posts
                       </Link>
@@ -158,7 +176,7 @@ const Header = () => {
                     <li>
                       <Link
                         to="/pricing"
-                        className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                        className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-primary-950 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-950 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                       >
                         Pricing
                       </Link>
@@ -166,7 +184,7 @@ const Header = () => {
                     <li>
                       <Link
                         to="/all-teachers"
-                        className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 my-2"
+                        className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:primary-950 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-950 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 my-2"
                       >
                         Teachers
                       </Link>
@@ -174,21 +192,69 @@ const Header = () => {
                     <li>
                       <Link
                         to="/all-students"
-                        className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 my-2"
+                        className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-primary-950 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-950 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 my-2"
                       >
                         Students
                       </Link>
                     </li>
+                    <li>
+                      <Link
+                        to="/affiliate-program"
+                        className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-primary-950 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-950 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 my-2"
+                      >
+                        Affiliate Program
+                      </Link>
+                    </li>
                   </ul>
+                </li> */}
+                <li>
+                  <Link
+                    to="/posts"
+                    className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-primary-950 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-950 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 my-2 "
+                  >
+                    Posts
+                  </Link>
                 </li>
                 <li>
                   <Link
+                    to="/affiliate-program"
+                    className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-primary-950 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-950 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 my-2"
+                  >
+                    Affiliate Program
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/all-teachers"
+                    className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:primary-950 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-950 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 my-2"
+                  >
+                    Teachers
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/all-students"
+                    className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-primary-950 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-950 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 my-2"
+                  >
+                    Students
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/pricing"
+                    className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-primary-950 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-950 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700  my-2"
+                  >
+                    Pricing
+                  </Link>
+                </li>
+                {/* <li>
+                  <Link
                     to="/contact"
-                    className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-primary-950 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-950 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                   >
                     Contact
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>

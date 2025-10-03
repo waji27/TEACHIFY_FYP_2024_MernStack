@@ -28,6 +28,9 @@ const StudentDashboard = () => {
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                     Profile
                   </h3>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    Available tokens: {auth?.user?.tokens ?? 0}
+                  </h3>
                 </div>
                 {/* User Profile data*/}
                 <div className="grid gap-4 mb-4 sm:grid-cols-2">
@@ -111,7 +114,7 @@ const StudentDashboard = () => {
                       {auth?.user?.subjects}
                     </label>
                   </div>
-                  <div>
+                  {/* <div>
                     <label
                       htmlFor="price"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -126,7 +129,7 @@ const StudentDashboard = () => {
                     >
                       {auth?.user?.password}
                     </label>
-                  </div>
+                  </div> */}
                   <div>
                     <label
                       htmlFor="price"

@@ -43,19 +43,25 @@ const Allstudents = () => {
               >
                 <a href="#">
                   <img
-                    className="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                    src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
-                    alt="Jese Avatar"
+                    className="w-64 rounded-lg sm:rounded-none sm:rounded-l-lg h-64 object-cover"
+                    src={
+                      eachStudent.profilePicture
+                        ? `http://localhost:3030${eachStudent.profilePicture}`
+                        : "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
+                    }
+                    alt={`${eachStudent.name} Avatar`}
                   />
                 </a>
                 <div className="p-5  w-3/4">
                   <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    <h1 href="#">{eachStudent.name}</h1>
+                    <h2>
+                      {eachStudent.name} {eachStudent.lastname}
+                    </h2>
                   </h3>
-                  <span className="text-gray-500 dark:text-gray-200">
+                  <span className="text-gray-500 dark:text-gray-200 font-semibold">
                     Subjects:{" "}
-                    <span className="dark:text-yellow-200">
-                      {eachStudent.subjects}
+                    <span className="dark:text-yellow-200 font-light">
+                      {eachStudent.subjects.substring(0, 20) + "..."}
                     </span>
                   </span>
                   <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
@@ -138,9 +144,9 @@ const Allstudents = () => {
                   <ul className="flex space-x-4 sm:mt-0">
                     <li>
                       <h3 className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
-                        Teaching Mode:{" "}
+                        Education:{" "}
                         <span className="dark:text-green-500 text-gray-500">
-                          {eachStudent.studyingmode}
+                          {eachStudent.education}
                         </span>
                       </h3>
                     </li>

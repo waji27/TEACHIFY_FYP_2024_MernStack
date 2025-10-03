@@ -6,6 +6,7 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import teacherRoutes from "./routes/teacherRoutes.js";
 import studentRoutes from "./routes/studentRoutes.js";
+import adminRoutes from "./routes/adminRoutes.js";
 import cors from "cors";
 import userModel from "./models/userModel.js";
 
@@ -22,11 +23,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
+app.use('/uploads', express.static('public/uploads'));
 
 //routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/teacher", teacherRoutes);
 app.use("/api/v1/student", studentRoutes);
+app.use("/api/v1/admin", adminRoutes);
 
 //rest api
 app.get("/", (req, res) => {

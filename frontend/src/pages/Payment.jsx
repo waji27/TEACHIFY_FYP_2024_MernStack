@@ -1,7 +1,45 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Layout from "../components/Layout";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const Payment = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const plan = useMemo(
+    () =>
+      location.state?.plan || {
+        name: "Starter Tokens",
+        price: 500,
+        tokens: 100,
+      },
+    [location.state]
+  );
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:3030/api/v1/auth/credit-tokens",
+        { amount: plan.tokens }
+      );
+      if (response?.data?.success) {
+        const currentAuth = JSON.parse(localStorage.getItem("auth")) || {};
+        const updatedAuth = {
+          ...currentAuth,
+          user: { ...currentAuth.user, tokens: response.data.tokens },
+        };
+        localStorage.setItem("auth", JSON.stringify(updatedAuth));
+        toast.success(`${plan.tokens} tokens added to your account`);
+        navigate("/");
+      } else {
+        toast.error(response?.data?.message || "Unable to credit tokens");
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "Something went wrong");
+    }
+  };
   return (
     <Layout>
       <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
@@ -12,7 +50,7 @@ const Payment = () => {
             </h2>
             <div className="mt-6 sm:mt-8 lg:flex lg:items-start lg:gap-12">
               <form
-                action="#"
+                onSubmit={handleSubmit}
                 className="w-full rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6 lg:max-w-xl lg:p-8"
               >
                 <div className="mb-6 grid grid-cols-2 gap-4">
@@ -131,7 +169,7 @@ const Payment = () => {
                 </div>
                 <button
                   type="submit"
-                  className="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  className="flex w-full items-center justify-center rounded-lg bg-primary-950 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-970 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-950 dark:hover:bg-primary-970 dark:focus:ring-primary-800"
                 >
                   Pay now
                 </button>
@@ -141,34 +179,26 @@ const Payment = () => {
                   <div className="space-y-2">
                     <dl className="flex items-center justify-between gap-4">
                       <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
-                        Original price
+                        Plan
                       </dt>
                       <dd className="text-base font-medium text-gray-900 dark:text-white">
-                        $6,592.00
+                        {plan.name}
                       </dd>
                     </dl>
                     <dl className="flex items-center justify-between gap-4">
                       <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
-                        Savings
+                        Tokens included
                       </dt>
                       <dd className="text-base font-medium text-green-500">
-                        -$299.00
+                        {plan.tokens}
                       </dd>
                     </dl>
                     <dl className="flex items-center justify-between gap-4">
                       <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
-                        Store Pickup
+                        Price
                       </dt>
                       <dd className="text-base font-medium text-gray-900 dark:text-white">
-                        $99
-                      </dd>
-                    </dl>
-                    <dl className="flex items-center justify-between gap-4">
-                      <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
-                        Tax
-                      </dt>
-                      <dd className="text-base font-medium text-gray-900 dark:text-white">
-                        $799
+                        Rs.{plan.price}
                       </dd>
                     </dl>
                   </div>
@@ -177,7 +207,7 @@ const Payment = () => {
                       Total
                     </dt>
                     <dd className="text-base font-bold text-gray-900 dark:text-white">
-                      $7,191.00
+                      Rs.{plan.price}
                     </dd>
                   </dl>
                 </div>
@@ -215,25 +245,6 @@ const Payment = () => {
                 </div>
               </div>
             </div>
-            <p className="mt-6 text-center text-gray-500 dark:text-gray-400 sm:mt-8 lg:text-left">
-              Payment processed by{" "}
-              <a
-                href="#"
-                title
-                className="font-medium text-primary-700 underline hover:no-underline dark:text-primary-500"
-              >
-                Paddle
-              </a>{" "}
-              for{" "}
-              <a
-                href="#"
-                title
-                className="font-medium text-primary-700 underline hover:no-underline dark:text-primary-500"
-              >
-                Flowbite LLC
-              </a>
-              - United States Of America
-            </p>
           </div>
         </div>
       </section>

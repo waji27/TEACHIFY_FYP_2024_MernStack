@@ -1,6 +1,7 @@
 import userModel from "../models/userModel.js";
 import { comparePassword, hashPassword } from "./../helpers/authHelper.js";
 import JWT from "jsonwebtoken";
+import mongoose from "mongoose";
 
 // register new user controller
 export const registerController = async (req, res) => {
@@ -163,6 +164,39 @@ export const AllUsersCount = async (req, res) => {
     });
   } catch (error) {
     console.error("Error in fetching teachersCount:", error);
+    res.status(500).send({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
+
+// Credit tokens to a user (used for purchasing plans)
+export const creditTokensController = async (req, res) => {
+  try {
+    const userId = req.user?._id;
+    const { amount } = req.body; // number of tokens to add
+    if (!userId) {
+      return res.status(401).send({ success: false, message: "Unauthorized" });
+    }
+    const tokensToAdd = Number(amount);
+    if (!Number.isFinite(tokensToAdd) || tokensToAdd <= 0) {
+      return res
+        .status(400)
+        .send({ success: false, message: "Invalid token amount" });
+    }
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).send({ success: false, message: "User not found" });
+    }
+    user.tokens = (user.tokens || 0) + tokensToAdd;
+    await user.save();
+    return res
+      .status(200)
+      .send({ success: true, message: "Tokens credited", tokens: user.tokens });
+  } catch (error) {
+    console.error("Error in creditTokensController:", error);
     res.status(500).send({
       success: false,
       message: "Internal Server Error",

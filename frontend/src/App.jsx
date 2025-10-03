@@ -22,6 +22,7 @@ import AddNewPost from "./pages/posts/AddNewPost";
 import UserPosts from "./pages/posts/UserPosts";
 import Contact from "./pages/Contact";
 import About from "./pages/teacherpages/About";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
       </Routes>
     </>
   );

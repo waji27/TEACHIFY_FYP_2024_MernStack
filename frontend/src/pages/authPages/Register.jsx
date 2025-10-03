@@ -92,7 +92,7 @@ const Register = () => {
                   <input
                     onChange={(e) => setconfirmPassword(e.target.value)}
                     value={confirmPassword}
-                    type="confirmPassword"
+                    type="password"
                     name="confirmPassword"
                     id="confirmPassword"
                     placeholder="••••••••"
@@ -119,7 +119,7 @@ const Register = () => {
                     >
                       I accept the{" "}
                       <Link
-                        className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                        className="font-medium text-primary-950 hover:underline dark:text-primary-500"
                         href="#"
                       >
                         Terms and Conditions
@@ -129,7 +129,7 @@ const Register = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  className="w-full text-white bg-primary-950 hover:bg-primary-970 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
                   Create an account
                 </button>
@@ -137,7 +137,7 @@ const Register = () => {
                   Already have an account?{" "}
                   <Link
                     to="/login"
-                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    className="font-medium text-primary-950 hover:underline dark:text-primary-500"
                   >
                     Login here
                   </Link>

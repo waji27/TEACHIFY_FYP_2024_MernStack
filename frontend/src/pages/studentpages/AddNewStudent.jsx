@@ -13,6 +13,8 @@ const AddNewStudent = () => {
   const [education, setEducation] = useState("");
   const [gender, setGender] = useState("");
   const [age, setAge] = useState("0");
+  const [description, setDescription] = useState("");
+  const [profilePicture, setProfilePicture] = useState(null);
   const navigate = useNavigate();
 
   // Fetch email from localStorage on mount
@@ -27,24 +29,35 @@ const AddNewStudent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const formData = new FormData();
+      formData.append("email", email);
+      formData.append("name", name);
+      formData.append("lastname", lastname);
+      formData.append("phone", phone);
+      formData.append("subjects", subjects);
+      formData.append("education", education);
+      formData.append("gender", gender);
+      formData.append("age", age);
+      formData.append("description", description);
+
+      if (profilePicture) {
+        formData.append("profilePicture", profilePicture);
+      }
+
       const response = await axios.post(
         "http://localhost:3030/api/v1/student/add-new-student",
+        formData,
         {
-          email,
-          name,
-          lastname,
-          phone,
-          subjects,
-          education,
-          gender,
-          age,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
 
       if (response?.data?.success) {
         toast.success(response?.data?.message);
         const userData = JSON.parse(localStorage.getItem("auth")) || {};
-        userData.user.role = "teacher";
+        userData.user.role = "student";
         localStorage.setItem("auth", JSON.stringify(userData));
         navigate("/");
       } else {
@@ -58,8 +71,8 @@ const AddNewStudent = () => {
 
   return (
     <Layout>
-      <section className="p-10">
-        <form onSubmit={handleSubmit} className="max-w-2xl mx-auto">
+      <section className="bg-white dark:bg-gray-900">
+        <form onSubmit={handleSubmit} className="max-w-2xl mx-auto my-12">
           {/* user email  */}
           <div className="relative z-0 w-full mb-5 group">
             <input
@@ -182,12 +195,32 @@ const AddNewStudent = () => {
             >
               Current level of education
             </label>
-            <select
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                value={education}
+                onChange={(e) => {
+                  setEducation(e.target.value);
+                }}
+                type="text"
+                name="floating_company"
+                id="floating_company"
+                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=""
+                required
+              />
+              <label
+                htmlFor="floating_company"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Current level of Education (Ex. Matric, FSC)
+              </label>
+            </div>
+            {/* <select
               value={education}
               onChange={(e) => {
                 setEducation(e.target.value);
               }}
-              id="countries"
+              id="education"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
               <option value="PreSchool">PreSchool</option>
@@ -196,7 +229,7 @@ const AddNewStudent = () => {
               <option value="Intermediate(HSSC)">Intermediate(HSSC)</option>
               <option value="Undergraduate">Undergraduate</option>
               <option value="Graduate">Graduate</option>
-            </select>
+            </select> */}
           </div>
           {/* gender and teaching mode  */}
           <div className="grid md:grid-cols-2 md:gap-6">
@@ -220,7 +253,7 @@ const AddNewStudent = () => {
               </select>
             </div>
           </div>
-          ß{/* age  */}
+          {/* age  */}
           <div className="relative z-0 w-full mb-5 group">
             <label
               htmlFor="small-range"
@@ -240,6 +273,46 @@ const AddNewStudent = () => {
               className="w-full h-1 mb-6 bg-gray-200 rounded-lg appearance-none cursor-pointer range-sm dark:bg-gray-700"
             />
           </div>
+          <div className="relative z-0 w-full mb-5 group">
+            <textarea
+              value={description}
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
+              name="floating_last_name"
+              id="floating_last_name"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=""
+              required
+            />
+            <label
+              htmlFor="floating_last_name"
+              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >
+              Description
+            </label>
+          </div>
+          {/* Profile Picture  */}
+          <div className="relative z-0 w-full mb-5 group">
+            <label
+              htmlFor="profilePicture"
+              className="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-400"
+            >
+              Profile Picture *
+            </label>
+            <input
+              type="file"
+              id="profilePicture"
+              accept="image/*"
+              onChange={(e) => setProfilePicture(e.target.files[0])}
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400"
+              required
+            />
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+              Upload a clear profile picture
+            </p>
+          </div>
+
           <button
             type="submit"
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

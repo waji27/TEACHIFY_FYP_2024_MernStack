@@ -1,24 +1,79 @@
 import PostsModel from "../models/PostsModel.js";
 import userModel from "../models/userModel.js";
+import path from "path";
 
 // Controller function for registering a new student
 export const registerController = async (req, res) => {
   try {
-    const { email, name, lastname, phone, subjects, education, gender, age } =
-      req.body;
-    if (
-      !email ||
-      !name ||
-      !lastname ||
-      !phone ||
-      !subjects ||
-      !education ||
-      !gender ||
-      !age
-    ) {
+    const {
+      email,
+      name,
+      lastname,
+      phone,
+      subjects,
+      education,
+      gender,
+      description,
+      age,
+    } = req.body;
+
+    // Handle profile picture upload
+    let profilePicture = "";
+    if (req.file) {
+      profilePicture = `/uploads/profiles/${req.file.filename}`;
+    }
+    if (!email) {
       return res.status(400).send({
         success: false,
-        message: "All fields required",
+        message: "Email required",
+      });
+    }
+    if (!name) {
+      return res.status(400).send({
+        success: false,
+        message: "name required",
+      });
+    }
+    if (!lastname) {
+      return res.status(400).send({
+        success: false,
+        message: "lastname required",
+      });
+    }
+    if (!phone) {
+      return res.status(400).send({
+        success: false,
+        message: "phone required",
+      });
+    }
+    if (!subjects) {
+      return res.status(400).send({
+        success: false,
+        message: "subjects required",
+      });
+    }
+    if (!education) {
+      return res.status(400).send({
+        success: false,
+        message: "education required",
+      });
+    }
+    if (!gender) {
+      return res.status(400).send({
+        success: false,
+        message: "gender required",
+      });
+    }
+    if (!description) {
+      return res.status(400).send({
+        success: false,
+        message: "description required",
+      });
+    }
+    if (!age) {
+      return res.status(400).send({
+        success: false,
+        message: "age required",
       });
     }
 
@@ -46,6 +101,10 @@ export const registerController = async (req, res) => {
       user.education = education;
       user.gender = gender;
       user.age = age;
+      user.description = description;
+      user.tokens = 100;
+
+      user.profilePicture = profilePicture;
     }
 
     const updatedUser = await user.save();
@@ -144,9 +203,19 @@ export const AddNewPostController = async (req, res) => {
 // Controller for getting all posts by a single user
 export const GetAllPostsbyUserController = async (req, res) => {
   try {
-    const { userId } = req.params;
-    const posts = await PostsModel.find({ user: userId });
-    res.status(201).send({ message: "Posts fetched Successfully!", posts });
+    const userId = req.query.userId;
+    if (!userId) {
+      return res
+        .status(400)
+        .send({ success: false, message: "userId is required" });
+    }
+    const posts = await PostsModel.find({ userId }).populate({
+      path: "userId",
+      select: "name lastname",
+    });
+    res
+      .status(200)
+      .send({ success: true, message: "Posts fetched Successfully!", posts });
   } catch (error) {
     res.status(500).send({ message: "Some thing went wrong", error });
   }

@@ -27,7 +27,7 @@ const TeacherDashboard = () => {
                     Profile
                   </h3>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    Available Coins: 100
+                    Available tokens: {auth?.user?.tokens ?? 0}
                   </h3>
                 </div>
                 {/* User Profile data*/}
@@ -62,6 +62,22 @@ const TeacherDashboard = () => {
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
                       {auth?.user?.email}
+                    </label>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="brand"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Role
+                    </label>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="brand"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      {auth?.user?.role}
                     </label>
                   </div>
                   <div>
@@ -112,7 +128,7 @@ const TeacherDashboard = () => {
                       {auth?.user?.subjects}
                     </label>
                   </div>
-                  <div>
+                  {/* <div>
                     <label
                       htmlFor="price"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -127,7 +143,7 @@ const TeacherDashboard = () => {
                     >
                       {auth?.user?.password}
                     </label>
-                  </div>
+                  </div> */}
                   <div>
                     <label
                       htmlFor="price"

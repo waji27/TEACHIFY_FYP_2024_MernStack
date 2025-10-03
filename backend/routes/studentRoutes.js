@@ -7,13 +7,14 @@ import {
   getAllStudentsController,
   registerController,
 } from "../controllers/studentController.js";
+import { upload } from "../middlewares/uploadMiddleware.js";
 
 //router object
 const router = express.Router();
 
 //routing
 //REGISTER || METHOD POST
-router.post("/add-new-student", registerController);
+router.post("/add-new-student", upload.single('profilePicture'), registerController);
 
 //GET ALL TEACHERS || METHOD POST
 router.post("/get-all-students", getAllStudentsController);

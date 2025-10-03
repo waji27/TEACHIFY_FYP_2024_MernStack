@@ -118,7 +118,7 @@ const Pricing = () => {
                     plan: { name: "Starter Tokens", price: 500, tokens: 100 },
                   },
                 }}
-                className="text-white bg-primary-970 hover:bg-primary-970 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900"
+                className="text-white bg-primary-950 hover:bg-primary-970 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900"
               >
                 Buy Tokens
               </Link>

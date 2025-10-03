@@ -46,7 +46,7 @@ const AddNewTeacher = () => {
       formData.append("experienceyears", experienceyears);
       formData.append("description", description);
       formData.append("address", address);
-      
+
       if (profilePicture) {
         formData.append("profilePicture", profilePicture);
       }
@@ -264,8 +264,8 @@ const AddNewTeacher = () => {
               >
                 <option value="Select">Select</option>
                 <option value="Both">Both</option>
-                <option value="Online only">Online only</option>
-                <option value="Offline only">Offline only</option>
+                <option value="Online">Online only</option>
+                <option value="Offline">Offline only</option>
               </select>
             </div>
           </div>
@@ -349,7 +349,7 @@ const AddNewTeacher = () => {
               }}
               id="message"
               rows="4"
-            className="block p-2.5 w-full text-sm text-gray-900 rounded-lg  bg-transparent border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="block p-2.5 w-full text-sm text-gray-900 rounded-lg  bg-transparent border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Ex. I am a perfect teacher in Maths..."
             ></textarea>
           </div>
@@ -370,7 +370,9 @@ const AddNewTeacher = () => {
               className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400"
               required
             />
-            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Upload a clear profile picture</p>
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+              Upload a clear profile picture
+            </p>
           </div>
 
           <button

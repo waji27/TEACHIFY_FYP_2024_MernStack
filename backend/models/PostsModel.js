@@ -15,7 +15,7 @@ const postSchema = new mongoose.Schema(
     teachingmode: {
       type: String,
       required: true,
-      enum: ["online", "offline", "hybrid"], // optional validation
+      enum: ["online", "offline", "both"], // optional validation
     },
     userId: {
       type: mongoose.Schema.Types.ObjectId,

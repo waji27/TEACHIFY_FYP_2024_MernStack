@@ -3,6 +3,8 @@ import Layout from "../../components/Layout";
 import { useAuth } from "../../context/auth";
 import { Link } from "react-router-dom";
 import UserDashboardMenu from "../../components/UserDashboardMenu";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 const StudentProfEdit = () => {
   //context

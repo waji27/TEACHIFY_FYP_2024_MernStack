@@ -11,13 +11,13 @@ const Posts = () => {
   const [posts, setPosts] = useState([]);
   const [auth, setAuth] = useAuth();
   const [confirmForPostId, setConfirmForPostId] = useState(null);
-  // function for fetching all posts
 
+  // function for fetching all posts
   const fetchPosts = async () => {
     try {
       const authData = JSON.parse(localStorage.getItem("auth"));
       const userId = authData?.user?._id;
-      if (!userId) return;
+      // if (!userId) return;
       const response = await axios.get(
         `http://localhost:3030/api/v1/student/get-all-posts`
       );

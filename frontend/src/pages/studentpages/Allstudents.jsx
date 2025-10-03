@@ -64,8 +64,11 @@ const Allstudents = () => {
                       {eachStudent.subjects.substring(0, 20) + "..."}
                     </span>
                   </span>
-                  <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
-                    {eachStudent.description.substring(0, 30) + "..."}
+                  <p className="text-gray-500 dark:text-gray-200 font-semibold">
+                    Description:{" "}
+                    <span className="dark:text-yellow-200 font-light">
+                      {eachStudent.description.substring(0, 30) + "..."}
+                    </span>
                   </p>
                   {/* <ul className="flex space-x-4 sm:mt-0">
                     <li>

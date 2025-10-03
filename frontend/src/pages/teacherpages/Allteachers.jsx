@@ -6,6 +6,10 @@ import toast from "react-hot-toast";
 
 const Allteachers = () => {
   const [Allteachers, setAllteachers] = useState([]);
+  const [filteredTeachers, setFilteredTeachers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedSubjects, setSelectedSubjects] = useState([]);
+  const [selectedTeachingModes, setSelectedTeachingModes] = useState([]);
 
   // function for fetching all teachers from backend
   const fetchAllTeachers = async () => {
@@ -15,18 +19,96 @@ const Allteachers = () => {
 
     if (response?.data?.success) {
       setAllteachers(response?.data?.allTeachers);
+      setFilteredTeachers(response?.data?.allTeachers);
     } else {
       toast.error(response?.data?.message || "Something went wrong");
     }
+  };
+
+  // Filter teachers based on search term and selected filters
+  const filterTeachers = () => {
+    let filtered = Allteachers;
+
+    // Filter by search term
+    if (searchTerm) {
+      filtered = filtered.filter((teacher) =>
+        teacher.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        teacher.lastname.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        teacher.subjects.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        teacher.education.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        teacher.description.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    // Filter by subjects
+    if (selectedSubjects.length > 0) {
+      filtered = filtered.filter((teacher) =>
+        selectedSubjects.some(subject =>
+          teacher.subjects.toLowerCase().includes(subject.toLowerCase())
+        )
+      );
+    }
+
+    // Filter by teaching mode (case-insensitive) with exact selection behavior:
+    // - Only Online selected => show teachers with 'online'
+    // - Only Offline selected => show teachers with 'offline'
+    // - Both selected => show teachers with 'both'
+    if (selectedTeachingModes.length > 0) {
+      const normalizedSelectedModes = selectedTeachingModes
+        .map((mode) => (mode || "").toString().trim().toLowerCase());
+
+      filtered = filtered.filter((teacher) => {
+        const teacherMode = (teacher.teachingmode || "").toString().trim().toLowerCase();
+
+        if (normalizedSelectedModes.length === 2 && normalizedSelectedModes.includes("online") && normalizedSelectedModes.includes("offline")) {
+          return teacherMode === "both";
+        }
+
+        if (normalizedSelectedModes.length === 1) {
+          const only = normalizedSelectedModes[0];
+          if (only === "online") return teacherMode === "online";
+          if (only === "offline") return teacherMode === "offline";
+        }
+
+        return true;
+      });
+    }
+
+    setFilteredTeachers(filtered);
+  };
+
+  // Handle search input change
+  const handleSearchChange = (term) => {
+    setSearchTerm(term);
+  };
+
+  // Handle subject filter change
+  const handleSubjectFilterChange = (subjects) => {
+    setSelectedSubjects(subjects);
+  };
+
+  // Handle teaching mode filter change
+  const handleTeachingModeFilterChange = (modes) => {
+    setSelectedTeachingModes(modes);
   };
 
   useEffect(() => {
     fetchAllTeachers();
   }, []);
 
+  useEffect(() => {
+    filterTeachers();
+  }, [searchTerm, selectedSubjects, selectedTeachingModes, Allteachers]);
+
   return (
     <Layout>
-      {/* <Filtercomponent /> */}
+      <Filtercomponent 
+        onSearchChange={handleSearchChange}
+        onSubjectFilterChange={handleSubjectFilterChange}
+        onTeachingModeFilterChange={handleTeachingModeFilterChange}
+        selectedSubjects={selectedSubjects}
+        selectedTeachingModes={selectedTeachingModes}
+      />
       <section className="bg-white dark:bg-gray-900">
         <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
           <div className="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
@@ -35,7 +117,7 @@ const Allteachers = () => {
             </h2>
           </div>
           <div className="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
-            {Allteachers.map((eachTeacher) => (
+            {filteredTeachers.map((eachTeacher) => (
               <div
                 key={eachTeacher._id}
                 className="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"

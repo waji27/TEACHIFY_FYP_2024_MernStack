@@ -1,13 +1,49 @@
 import React, { useState } from "react";
 
-const Filtercomponent = () => {
+const Filtercomponent = ({
+  onSearchChange,
+  onSubjectFilterChange,
+  onTeachingModeFilterChange,
+  selectedSubjects = [],
+  selectedTeachingModes = [],
+}) => {
   const [filterDropdownVisible, setFilterDropdownVisible] = useState(false);
   const [actionsDropdownVisible, setActionsDropdownVisible] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const toggleActionsDropdown = () =>
     setActionsDropdownVisible(!actionsDropdownVisible);
   const toggleFilterDropdown = () =>
     setFilterDropdownVisible(!filterDropdownVisible);
+
+  // Handle search input change
+  const handleSearchInputChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    onSearchChange(value);
+  };
+
+  // Handle subject checkbox change
+  const handleSubjectChange = (subject, isChecked) => {
+    let updatedSubjects;
+    if (isChecked) {
+      updatedSubjects = [...selectedSubjects, subject];
+    } else {
+      updatedSubjects = selectedSubjects.filter((s) => s !== subject);
+    }
+    onSubjectFilterChange(updatedSubjects);
+  };
+
+  // Handle teaching mode checkbox change
+  const handleTeachingModeChange = (mode, isChecked) => {
+    let updatedModes;
+    if (isChecked) {
+      updatedModes = [...selectedTeachingModes, mode];
+    } else {
+      updatedModes = selectedTeachingModes.filter((m) => m !== mode);
+    }
+    onTeachingModeFilterChange(updatedModes);
+  };
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900 flex items-center flex-col">
@@ -105,8 +141,9 @@ const Filtercomponent = () => {
                     type="text"
                     id="simple-search"
                     className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Search"
-                    required
+                    placeholder="Search teachers by name, subjects, education..."
+                    value={searchTerm}
+                    onChange={handleSearchInputChange}
                   />
                 </div>
               </form>
@@ -134,11 +171,14 @@ const Filtercomponent = () => {
               <input
                 id="English"
                 type="checkbox"
-                defaultValue
+                checked={selectedSubjects.includes("English")}
+                onChange={(e) =>
+                  handleSubjectChange("English", e.target.checked)
+                }
                 className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
               />
               <label
-                htmlFor="apple"
+                htmlFor="English"
                 className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
               >
                 English
@@ -146,13 +186,14 @@ const Filtercomponent = () => {
             </li>
             <li className="flex items-center">
               <input
-                id="fitbit"
+                id="Urdu"
                 type="checkbox"
-                defaultValue
+                checked={selectedSubjects.includes("Urdu")}
+                onChange={(e) => handleSubjectChange("Urdu", e.target.checked)}
                 className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
               />
               <label
-                htmlFor="fitbit"
+                htmlFor="Urdu"
                 className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
               >
                 Urdu
@@ -160,13 +201,14 @@ const Filtercomponent = () => {
             </li>
             <li className="flex items-center">
               <input
-                id="dell"
+                id="Maths"
                 type="checkbox"
-                defaultValue
+                checked={selectedSubjects.includes("Maths")}
+                onChange={(e) => handleSubjectChange("Maths", e.target.checked)}
                 className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
               />
               <label
-                htmlFor="dell"
+                htmlFor="Maths"
                 className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
               >
                 Maths
@@ -174,17 +216,36 @@ const Filtercomponent = () => {
             </li>
             <li className="flex items-center">
               <input
-                id="asus"
+                id="Geography"
                 type="checkbox"
-                defaultValue
-                defaultChecked
+                checked={selectedSubjects.includes("Geography")}
+                onChange={(e) =>
+                  handleSubjectChange("Geography", e.target.checked)
+                }
                 className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
               />
               <label
-                htmlFor="asus"
+                htmlFor="Geography"
                 className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
               >
                 Geography
+              </label>
+            </li>
+            <li className="flex items-center">
+              <input
+                id="Geography"
+                type="checkbox"
+                checked={selectedSubjects.includes("Computer")}
+                onChange={(e) =>
+                  handleSubjectChange("Computer", e.target.checked)
+                }
+                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+              />
+              <label
+                htmlFor="Geography"
+                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+              >
+                Computer
               </label>
             </li>
           </ul>
@@ -202,36 +263,64 @@ const Filtercomponent = () => {
           //     transform: "translate3d(901px, 64px, 0px)",
           //   }}
         >
-          <ul
-            className="text-sm flex flex-row gap-3 justify-center items-center flex-wrap"
-            aria-labelledby="dropdownDefault"
-          >
+          <ul className="text-sm flex flex-row gap-3 justify-center items-center flex-wrap">
             <li className="flex items-center">
               <input
-                id="English"
+                id="online"
                 type="checkbox"
-                defaultValue
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                checked={selectedTeachingModes.includes("online")}
+                onChange={(e) =>
+                  handleTeachingModeChange("online", e.target.checked)
+                }
+                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 
+                 focus:ring-primary-500 dark:focus:ring-primary-600 
+                 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
               />
               <label
-                htmlFor="apple"
+                htmlFor="online"
                 className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
               >
-                Online
+                Online only
               </label>
             </li>
+
             <li className="flex items-center">
               <input
-                id="fitbit"
+                id="offline"
                 type="checkbox"
-                defaultValue
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                checked={selectedTeachingModes.includes("offline")}
+                onChange={(e) =>
+                  handleTeachingModeChange("offline", e.target.checked)
+                }
+                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 
+                 focus:ring-primary-500 dark:focus:ring-primary-600 
+                 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
               />
               <label
-                htmlFor="fitbit"
+                htmlFor="offline"
                 className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
               >
-                Offline
+                Offline only
+              </label>
+            </li>
+
+            <li className="flex items-center">
+              <input
+                id="both"
+                type="checkbox"
+                checked={selectedTeachingModes.includes("both")}
+                onChange={(e) =>
+                  handleTeachingModeChange("both", e.target.checked)
+                }
+                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 
+                 focus:ring-primary-500 dark:focus:ring-primary-600 
+                 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+              />
+              <label
+                htmlFor="both"
+                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+              >
+                Both
               </label>
             </li>
           </ul>
